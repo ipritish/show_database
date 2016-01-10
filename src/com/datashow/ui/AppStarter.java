@@ -1,6 +1,9 @@
 package com.datashow.ui;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
@@ -14,9 +17,14 @@ public class AppStarter {
 	public void showGui()
 	{
 		JPanel panel = new JPanel();
+		JLabel labelExample = new JLabel("Label");
+		labelExample.setSize(20, 10);
+		panel.add(labelExample);
 		mainFrame.add(panel);
 		mainFrame.setVisible(true);
-		mainFrame.setLocation(20, 30);
+		mainFrame.setLocation(40, 40);
+		Dimension dimension = new Dimension(1000, 700);
+		mainFrame.setSize(dimension);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
