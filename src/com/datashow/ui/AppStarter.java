@@ -18,12 +18,14 @@ public class AppStarter {
 	
 	public void showGui()
 	{
+		//TODO use list instead menu
 		JPanel panel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
 		JMenu menu = new JMenu("Select");
 		menu.add("Anime");
 		menu.add("Show");
 		menu.addChangeListener(new MenuChangeListener(menu));
+		menu.addItemListener(new GetItemListner());
 		menubar.add(menu);
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
