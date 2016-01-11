@@ -1,12 +1,16 @@
 package com.datashow.ui;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
@@ -24,8 +28,18 @@ public class AppStarter {
 		JMenu menu = new JMenu("Select");
 		menu.add("Anime");
 		menu.add("Show");
-		menu.addChangeListener(new MenuChangeListener(menu));
-		menu.addItemListener(new GetItemListner());
+		menu.addChangeListener(new ChangeListener(){
+
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
+		menu.addItemListener(new ItemListener(){
+
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
 		menubar.add(menu);
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
