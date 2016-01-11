@@ -1,6 +1,8 @@
 package com.datashow.ui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -28,6 +30,7 @@ public class AppStarter {
 		JMenu menu = new JMenu("Select");
 		menu.add("Anime");
 		menu.add("Show");
+		menu.setSelected(true);
 		menu.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -38,8 +41,17 @@ public class AppStarter {
 
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
+				//System.out.println(e.getID());
 				
 			}});
+		menu.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println(e.getActionCommand() + "test");
+				
+			}
+		});
 		menubar.add(menu);
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
