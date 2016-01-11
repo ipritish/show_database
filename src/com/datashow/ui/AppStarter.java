@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -27,10 +29,28 @@ public class AppStarter {
 		//TODO use list instead menu
 		JPanel panel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
-		JMenu menu = new JMenu("Select");
-		menu.add("Anime");
-		menu.add("Show");
-		menu.setSelected(true);
+		final JMenu menu = new JMenu("Select");
+		JMenuItem itemAnime = new JMenuItem("Anime");
+		JMenuItem itemShows = new JMenuItem("Show");
+		itemAnime.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				menu.setText("Anime");
+				
+			}
+		});
+		itemShows.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				menu.setText("Shows");
+				
+			}
+		});
+		menu.add(itemAnime);
+		menu.add(itemShows);
+		//menu.add("Show");
+		//menu.setSelected(true);
 		menu.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
@@ -48,7 +68,7 @@ public class AppStarter {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println(e.getActionCommand() + "test");
+				//System.out.println(e.getActionCommand() + "test");
 				
 			}
 		});
