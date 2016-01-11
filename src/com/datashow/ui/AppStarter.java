@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
@@ -17,9 +19,17 @@ public class AppStarter {
 	public void showGui()
 	{
 		JPanel panel = new JPanel();
+		JMenuBar menubar = new JMenuBar();
+		JMenu menu = new JMenu("Select");
+		menu.add("Anime");
+		menu.add("Show");
+		menu.addChangeListener(new MenuChangeListener(menu));
+		menubar.add(menu);
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
+		
 		panel.add(labelExample);
+		panel.add(menubar);
 		mainFrame.add(panel);
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
