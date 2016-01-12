@@ -32,6 +32,7 @@ public class AppStarter {
 		final JMenu menu = new JMenu("Select");
 		JMenuItem itemAnime = new JMenuItem("Anime");
 		JMenuItem itemShows = new JMenuItem("Show");
+		//itemAnime.add(new JMenuItem("test"));
 		itemAnime.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -49,29 +50,6 @@ public class AppStarter {
 		});
 		menu.add(itemAnime);
 		menu.add(itemShows);
-		//menu.add("Show");
-		//menu.setSelected(true);
-		menu.addChangeListener(new ChangeListener(){
-
-			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
-				
-			}});
-		menu.addItemListener(new ItemListener(){
-
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				//System.out.println(e.getID());
-				
-			}});
-		menu.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//System.out.println(e.getActionCommand() + "test");
-				
-			}
-		});
 		menubar.add(menu);
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
