@@ -1,5 +1,6 @@
 package com.datashow.ui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import org.apache.log4j.Logger;
 
@@ -32,6 +35,9 @@ public class AppStarter {
 	{
 		panel.remove(table);
 		table = new JTable(TableHeaders.placeHoderAnimeData, TableHeaders.animeColumnNames);
+		table.setEnabled(false);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		sizeRenderer(table);
 		panel.add(table);
 	}
 	
@@ -39,8 +45,41 @@ public class AppStarter {
 		
 		panel.remove(table);
 		table = new JTable(TableHeaders.placeHoderShowData, TableHeaders.animeColumnNames);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setEnabled(false);
+		sizeRenderer(table);
 		panel.add(table);
 		
+	}
+	
+	private int sizeRenderer(JTable table)
+	{
+		for (int column = 0; column < table.getColumnCount(); column++)
+		{
+		    TableColumn tableColumn = table.getColumnModel().getColumn(column);
+		    int preferredWidth = tableColumn.getMinWidth();
+		    int maxWidth = tableColumn.getMaxWidth();
+		 
+		    for (int row = 0; row < table.getRowCount(); row++)
+		    {
+		        TableCellRenderer cellRenderer = table.getCellRenderer(row, column);
+		        Component c = table.prepareRenderer(cellRenderer, row, column);
+		        int width = c.getPreferredSize().width + table.getIntercellSpacing().width;
+		        preferredWidth = Math.max(preferredWidth, width);
+		 
+		        //  We've exceeded the maximum width, no need to check other rows
+		 
+		        if (preferredWidth >= maxWidth)
+		        {
+		            preferredWidth = maxWidth;
+		            break;
+		        }
+		    }
+		 
+		    tableColumn.setPreferredWidth( preferredWidth );
+		}
+		
+		return 0;
 	}
 	
 	public void showGui()
@@ -52,6 +91,7 @@ public class AppStarter {
 		JMenuItem itemAnime = new JMenuItem("Anime");
 		JMenuItem itemShows = new JMenuItem("Show");
 		//itemAnime.add(new JMenuItem("test"));
+		
 		itemAnime.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
