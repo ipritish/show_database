@@ -1,4 +1,4 @@
-package com.datashow.constants;
+package main.java.com.datashow.constants;
 
 public class TableHeaders {
 	

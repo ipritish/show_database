@@ -1,4 +1,4 @@
-package com.datashow.ui;
+package main.java.com.datashow.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -22,9 +22,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import org.apache.log4j.Logger;
+import main.java.com.datashow.constants.TableHeaders;
 
-import com.datashow.constants.TableHeaders;
+import org.apache.log4j.Logger;
 
 public class AppStarter {
 	
