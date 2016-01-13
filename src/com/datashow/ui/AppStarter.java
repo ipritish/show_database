@@ -1,7 +1,9 @@
 package com.datashow.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -33,22 +35,24 @@ public class AppStarter {
 	
 	public void animeTableDisplay(JPanel panel)
 	{
+		table.removeAll();
 		panel.remove(table);
 		table = new JTable(TableHeaders.placeHoderAnimeData, TableHeaders.animeColumnNames);
 		table.setEnabled(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		sizeRenderer(table);
-		panel.add(table);
+		panel.add(table,BorderLayout.CENTER);
 	}
 	
 	private void showTableDisplay(JPanel panel) {
 		
-		panel.remove(table);
+		table.removeAll();
+		panel.remove(table);		
 		table = new JTable(TableHeaders.placeHoderShowData, TableHeaders.animeColumnNames);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		sizeRenderer(table);
-		panel.add(table);
+		panel.add(table,BorderLayout.CENTER);
 		
 	}
 	
@@ -76,7 +80,7 @@ public class AppStarter {
 		        }
 		    }
 		 
-		    tableColumn.setPreferredWidth( preferredWidth );
+		    tableColumn.setPreferredWidth(preferredWidth);
 		}
 		
 		return 0;
@@ -86,11 +90,13 @@ public class AppStarter {
 	{
 		//TODO use list instead menu
 		final JPanel panel = new JPanel();
+		final JPanel menuPanel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
 		final JMenu menu = new JMenu("Select");
 		JMenuItem itemAnime = new JMenuItem("Anime");
 		JMenuItem itemShows = new JMenuItem("Show");
 		//itemAnime.add(new JMenuItem("test"));
+		panel.setLayout(new BorderLayout());
 		
 		itemAnime.addActionListener(new ActionListener() {
 			
@@ -117,9 +123,10 @@ public class AppStarter {
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
 		
-		panel.add(labelExample);
-		panel.add(menubar);
-		mainFrame.add(panel);
+		menuPanel.add(labelExample,BorderLayout.NORTH);
+		menuPanel.add(menubar,BorderLayout.CENTER);
+		panel.add(menuPanel,BorderLayout.NORTH);
+		mainFrame.getContentPane().add(panel);
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
 		Dimension dimension = new Dimension(1000, 700);

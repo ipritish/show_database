@@ -16,7 +16,9 @@ public class TableHeaders {
 	
 	public static Object[][] placeHoderShowData = {
 		    {"Unbreakable Kimmi Smicdht", new Double(8.0),
-		     new Integer(2), new Boolean(false), "Sunday"}
+		     new Integer(2), new Boolean(false), "Sunday"},
+		     {"Archer", new Double(8.9),
+			     new Integer(7), new Boolean(false), "Sunday"}
 		};
 	
 	public static Object[][] placeHoderAnimeData = {
