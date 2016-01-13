@@ -123,8 +123,9 @@ public class AppStarter {
 		JLabel labelExample = new JLabel("Label");
 		labelExample.setSize(20, 10);
 		
-		menuPanel.add(labelExample,BorderLayout.NORTH);
-		menuPanel.add(menubar,BorderLayout.CENTER);
+		menuPanel.add(labelExample,BorderLayout.EAST);
+		menuPanel.add(new JPanel(),BorderLayout.CENTER);
+		menuPanel.add(menubar,BorderLayout.WEST);
 		panel.add(menuPanel,BorderLayout.NORTH);
 		mainFrame.getContentPane().add(panel);
 		mainFrame.setVisible(true);
