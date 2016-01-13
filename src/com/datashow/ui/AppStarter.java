@@ -13,21 +13,40 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
+
+import com.datashow.constants.TableHeaders;
 
 public class AppStarter {
 	
 	private static final Logger logger = Logger.getLogger(AppStarter.class);
 	
 	JFrame mainFrame = new JFrame("Shows and Anime");
+	JTable table = new JTable();
+	
+	public void animeTableDisplay(JPanel panel)
+	{
+		panel.remove(table);
+		table = new JTable(TableHeaders.placeHoderAnimeData, TableHeaders.animeColumnNames);
+		panel.add(table);
+	}
+	
+	private void showTableDisplay(JPanel panel) {
+		
+		panel.remove(table);
+		table = new JTable(TableHeaders.placeHoderShowData, TableHeaders.animeColumnNames);
+		panel.add(table);
+		
+	}
 	
 	public void showGui()
 	{
 		//TODO use list instead menu
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
 		final JMenu menu = new JMenu("Select");
 		JMenuItem itemAnime = new JMenuItem("Anime");
@@ -37,6 +56,7 @@ public class AppStarter {
 			
 			public void actionPerformed(ActionEvent e) {
 				menu.setText("Anime");
+				animeTableDisplay(panel);
 				
 			}
 		});
@@ -45,8 +65,11 @@ public class AppStarter {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				menu.setText("Shows");
+				showTableDisplay(panel);
 				
 			}
+
+			
 		});
 		menu.add(itemAnime);
 		menu.add(itemShows);
