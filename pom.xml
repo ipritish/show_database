@@ -45,7 +45,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.datashow.ui.AppStarter</mainClass>
+							<mainClass>main.java.com.datashow.ui.AppStarter</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -67,7 +67,7 @@
           </descriptorRefs>
           <archive>
         	<manifest>
-          		<mainClass>com.datashow.ui.AppStarter</mainClass>
+          		<mainClass>main.java.com.datashow.ui.AppStarter</mainClass>
         	</manifest>
       	</archive>
         </configuration>
