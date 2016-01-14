@@ -3,13 +3,8 @@ package main.java.com.datashow.ui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
-import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,14 +12,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import main.java.com.datashow.constants.TableHeaders;
+import main.java.com.datashow.persistence.User;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class AppStarter {
 	
@@ -133,6 +129,29 @@ public class AppStarter {
 		Dimension dimension = new Dimension(1000, 700);
 		mainFrame.setSize(dimension);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		dataBaseOperate();
+	}
+
+	private void dataBaseOperate() 
+	{
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+        Session session = sessionFactory.openSession();  
+        session.beginTransaction();
+		    
+		User user1=new User();  
+		user1.setUserName("Arpit");  
+		    
+		User user2=new User();  
+		user2.setUserName("Ankita");  
+
+
+		//saving objects to session  
+		session.save(user1);  
+		//session.save(user2);  
+		session.getTransaction().commit();  
+		session.close();  
+
+		
 	}
 
 	public static void main(String[] args) {
