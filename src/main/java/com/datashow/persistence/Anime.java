@@ -2,16 +2,16 @@ package main.java.com.datashow.persistence;
 
 import javax.persistence.Column;  
 import javax.persistence.Entity;  
-import javax.persistence.Id; 
+import javax.persistence.Id;
 
-@Entity(name="shows")
-public class Show {
-	
+@Entity(name="anime")
+public class Anime 
+{
 	@Id
 	private int Id;
 	
-	@Column(name="show_Name")
-	private String showName;
+	@Column(name="anime_Name")
+	private String animeName;
 	
 	@Column(name="rating")
 	private double rating;
@@ -24,7 +24,7 @@ public class Show {
 	
 	@Column(name="airDay")
 	private String airDay;
-	
+
 	public int getId() {
 		return Id;
 	}
@@ -33,12 +33,12 @@ public class Show {
 		Id = id;
 	}
 
-	public String getShowName() {
-		return showName;
+	public String getAnimeName() {
+		return animeName;
 	}
 
-	public void setShowName(String showName) {
-		this.showName = showName;
+	public void setAnimeName(String animeName) {
+		this.animeName = animeName;
 	}
 
 	public double getRating() {
@@ -72,6 +72,5 @@ public class Show {
 	public void setAirDay(String airDay) {
 		this.airDay = airDay;
 	}
-
 
 }
