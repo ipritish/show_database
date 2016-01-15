@@ -2,16 +2,15 @@ package main.java.com.datashow.persistence;
 
 import javax.persistence.Column;  
 import javax.persistence.Entity;  
-import javax.persistence.GeneratedValue;  
 import javax.persistence.Id;  
   
 @Entity(name="User_table")  
 public class User 
 {  
 	@Id  
-	int Id;  
+	private int Id;  
 	@Column(name="User_Name")  
-	String userName;  
+	private String userName;  
  
 	public int getUserId() 
 	{  
