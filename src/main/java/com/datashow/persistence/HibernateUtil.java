@@ -1,4 +1,4 @@
-package main.java.com.datashow.ui;
+package main.java.com.datashow.persistence;
 
 import org.hibernate.SessionFactory;  
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
