@@ -126,12 +126,12 @@ public class MainUI {
 		menuPanel.add(new JPanel(),BorderLayout.CENTER);
 		menuPanel.add(menubar,BorderLayout.WEST);
 		panel.add(menuPanel,BorderLayout.NORTH);
-		mainFrame.getContentPane().add(panel);
+		mainFrame.getContentPane().add(new LoginUI().getLoginPanel());
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
-		mainFrame.pack();
+		mainFrame.setSize(500, 600);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		dataBaseOperate();
+		//dataBaseOperate();
 	}
 
 	private void dataBaseOperate() 
