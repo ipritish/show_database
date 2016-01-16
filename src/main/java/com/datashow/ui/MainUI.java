@@ -129,7 +129,6 @@ public class MainUI {
 		mainFrame.getContentPane().add(panel);
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
-		Dimension dimension = new Dimension(1000, 700);
 		mainFrame.pack();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		dataBaseOperate();
@@ -141,15 +140,13 @@ public class MainUI {
         Session session = sessionFactory.openSession();  
         session.beginTransaction();
 		    
-		User user1=new User();  
-		user1.setUserName("Arpit");  
-		    
-		User user2=new User();  
-		user2.setUserName("Ankita");  
+		User user = new User();  
+		user.setUserName("Pritish");  
+		user.setPassword("password");
 
 
 		//saving objects to session  
-		session.save(user1);  
+		session.save(user);  
 		//session.save(user2);  
 		session.getTransaction().commit();  
 		session.close();  

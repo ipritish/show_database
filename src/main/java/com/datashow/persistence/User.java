@@ -4,13 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;  
 import javax.persistence.Id;  
   
-@Entity(name="User_table")  
+@Entity(name="user")  
 public class User 
 {  
 	@Id  
 	private int Id;  
-	@Column(name="User_Name")  
-	private String userName;  
+	@Column(name="username")  
+	private String userName;
+	@Column(name="password")
+	private String password;
  
 	public int getUserId() 
 	{  
@@ -30,6 +32,14 @@ public class User
 	public void setUserName(String userName) 
 	{  
 		this.userName = userName;  
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
     
 }

@@ -10,7 +10,7 @@ public class Show {
 	@Id
 	private int Id;
 	
-	@Column(name="show_Name")
+	@Column(name="showName")
 	private String showName;
 	
 	@Column(name="rating")
@@ -19,7 +19,7 @@ public class Show {
 	@Column(name="season")
 	private int season;
 	
-	@Column(name="OnAir")
+	@Column(name="onAir")
 	private boolean isAiring;
 	
 	@Column(name="airDay")

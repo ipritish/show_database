@@ -10,7 +10,7 @@ public class Anime
 	@Id
 	private int Id;
 	
-	@Column(name="anime_Name")
+	@Column(name="animeName")
 	private String animeName;
 	
 	@Column(name="rating")
