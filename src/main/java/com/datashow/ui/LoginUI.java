@@ -1,11 +1,10 @@
 package main.java.com.datashow.ui;
 
-import java.awt.BorderLayout;
-
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class LoginUI 
@@ -15,32 +14,36 @@ public class LoginUI
 	
 	public JPanel getLoginPanel()
 	{
-		loginPanel = new JPanel(new BorderLayout());
+		loginPanel = new JPanel();
 		loginPanel.setSize(300, 400);
+		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
 		
 		//user name panel
-		JPanel userNamePanel = new JPanel(new BorderLayout());
+		JPanel userNamePanel = new JPanel();
 		JLabel userLabel = new JLabel("User Name");
 		JTextField userName = new JTextField(20);
-		userNamePanel.add(userLabel, BorderLayout.WEST);
-		userNamePanel.add(new JPanel(),BorderLayout.CENTER);
-		userNamePanel.add(userName,BorderLayout.EAST);
+		userNamePanel.add(userLabel);
+		userNamePanel.add(new JPanel());
+		userNamePanel.add(userName);
 		
 		//password panel
-		JPanel passwordPanel = new JPanel(new BorderLayout());
+		JPanel passwordPanel = new JPanel();
 		JLabel passLabel = new JLabel("Password");
 		JPasswordField passField = new JPasswordField(20);
-		passField.setSize(50, 20);
-		passwordPanel.add(passLabel, BorderLayout.WEST);
-		passwordPanel.add(new JPanel(),BorderLayout.CENTER);
-		passwordPanel.add(passField,BorderLayout.EAST);
+		passwordPanel.add(passLabel);
+		passwordPanel.add(new JPanel());
+		passwordPanel.add(passField);
 		
-		JPanel bufferPanel = new JPanel();
-		bufferPanel.add(userNamePanel,BorderLayout.NORTH);
-		bufferPanel.add(passwordPanel,BorderLayout.SOUTH);
-		loginPanel.add(new JPanel(),BorderLayout.NORTH);
-		loginPanel.add(bufferPanel,BorderLayout.CENTER);
-		//loginPanel.add(passwordPanel,BorderLayout.SOUTH);
+		//JPanel bufferPanel = new JPanel(new FlowLayout());
+		loginPanel.add(new JPanel());
+		loginPanel.add(new JLabel("Login Credentials"));
+		loginPanel.add(userNamePanel);
+		loginPanel.add(passwordPanel);
+		
+		//loginPanel.add(bufferPanel);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(new JButton("Login"));
+		loginPanel.add(buttonPanel);
 		return loginPanel;
 	}
 
