@@ -129,7 +129,7 @@ public class MainUI {
 		mainFrame.getContentPane().add(new LoginUI().getLoginPanel());
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
-		mainFrame.setSize(500, 600);
+		mainFrame.pack();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//dataBaseOperate();
 	}

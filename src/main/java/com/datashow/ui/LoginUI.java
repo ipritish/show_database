@@ -1,5 +1,9 @@
 package main.java.com.datashow.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,15 +19,14 @@ public class LoginUI
 	public JPanel getLoginPanel()
 	{
 		loginPanel = new JPanel();
-		loginPanel.setSize(300, 400);
 		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
+		loginPanel.add(Box.createHorizontalStrut(500));
 		
 		//user name panel
 		JPanel userNamePanel = new JPanel();
 		JLabel userLabel = new JLabel("User Name");
 		JTextField userName = new JTextField(20);
 		userNamePanel.add(userLabel);
-		userNamePanel.add(new JPanel());
 		userNamePanel.add(userName);
 		
 		//password panel
@@ -31,19 +34,36 @@ public class LoginUI
 		JLabel passLabel = new JLabel("Password");
 		JPasswordField passField = new JPasswordField(20);
 		passwordPanel.add(passLabel);
-		passwordPanel.add(new JPanel());
 		passwordPanel.add(passField);
 		
 		//JPanel bufferPanel = new JPanel(new FlowLayout());
-		loginPanel.add(new JPanel());
-		loginPanel.add(new JLabel("Login Credentials"));
-		loginPanel.add(userNamePanel);
-		loginPanel.add(passwordPanel);
+		JPanel bufferPanel = new JPanel();
+		BoxLayout boxlayout = new BoxLayout(bufferPanel, BoxLayout.Y_AXIS);
+		bufferPanel.setLayout(boxlayout);
+		bufferPanel.add(userNamePanel);
+		bufferPanel.add(passwordPanel);
+
+		//label panel
+		JLabel label = new JLabel("Login Credentials");
+		JPanel labelPanel = new JPanel();
+		labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.X_AXIS));
+		labelPanel.add(label);
 		
-		//loginPanel.add(bufferPanel);
+		//button Panel
+		JButton button = new JButton("Login");
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(new JButton("Login"));
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.add(button);
+		
+		//add to main panel
+		loginPanel.add(new JPanel());
+		loginPanel.add(labelPanel);
+		//loginPanel.add(userNamePanel);
+		//loginPanel.add(passwordPanel);
+		loginPanel.add(bufferPanel);
+		//loginPanel.add(bufferPanel);
 		loginPanel.add(buttonPanel);
+		loginPanel.add(Box.createVerticalStrut(10));
 		return loginPanel;
 	}
 
