@@ -35,8 +35,12 @@ public class LoginUI
 		passwordPanel.add(new JPanel(),BorderLayout.CENTER);
 		passwordPanel.add(passField,BorderLayout.EAST);
 		
-		loginPanel.add(userNamePanel,BorderLayout.NORTH);
-		loginPanel.add(passwordPanel,BorderLayout.SOUTH);
+		JPanel bufferPanel = new JPanel();
+		bufferPanel.add(userNamePanel,BorderLayout.NORTH);
+		bufferPanel.add(passwordPanel,BorderLayout.SOUTH);
+		loginPanel.add(new JPanel(),BorderLayout.NORTH);
+		loginPanel.add(bufferPanel,BorderLayout.CENTER);
+		//loginPanel.add(passwordPanel,BorderLayout.SOUTH);
 		return loginPanel;
 	}
 
