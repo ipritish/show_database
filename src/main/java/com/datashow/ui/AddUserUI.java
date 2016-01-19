@@ -1,5 +1,6 @@
 package main.java.com.datashow.ui;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,8 +18,9 @@ import javax.swing.SwingConstants;
 public class AddUserUI {
 
 	JPanel addUserPanel;
+	boolean isValidated = false;
 	
-	public JPanel getAddUserUI()
+	public void getAddUserUI(final JFrame cont)
 	{
 		//JButton button = new JButton("test");
 		addUserPanel = new JPanel();
@@ -25,6 +28,7 @@ public class AddUserUI {
 		//layout added
 		BoxLayout addUserLayout = new BoxLayout(addUserPanel, BoxLayout.Y_AXIS);
 		addUserPanel.setLayout(addUserLayout);
+		addUserPanel.add(Box.createHorizontalStrut(600));
 		
 		//user name panel
 		JPanel userNamePanel = new JPanel();
@@ -64,7 +68,9 @@ public class AddUserUI {
 		BoxLayout boxlayout = new BoxLayout(bufferPanel, BoxLayout.Y_AXIS);
 		bufferPanel.setLayout(boxlayout);
 		bufferPanel.add(userNamePanel);
+		bufferPanel.add(Box.createVerticalStrut(10));
 		bufferPanel.add(passwordPanel);
+		bufferPanel.add(Box.createVerticalStrut(10));
 		bufferPanel.add(confirmPasswordPanel);
 		
 		//button Panel
@@ -73,14 +79,25 @@ public class AddUserUI {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					//TODO perform add used in database
+					if(!isValidated)
+					{
+						cont.getContentPane().removeAll();
+						cont.getContentPane().add(new JFrame("test").add(new JButton("test")));
+						cont.revalidate();
+						cont.pack();
+					}
 			}
 		});
 		
-		addUserPanel.add(Box.createVerticalStrut(10));
+		addUserPanel.add(Box.createVerticalStrut(30));
 		addUserPanel.add(bufferPanel);
 		addUserPanel.add(addUserButton);
 		addUserPanel.add(Box.createVerticalStrut(10));
-		return addUserPanel;
+		
+		cont.getContentPane().removeAll();
+		cont.getContentPane().add(addUserPanel);
+		cont.revalidate();
+		cont.pack();
+
 	}
 }

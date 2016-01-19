@@ -2,6 +2,7 @@ package main.java.com.datashow.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -19,7 +21,7 @@ public class LoginUI
 
 	JPanel loginPanel;
 	
-	public JPanel getLoginPanel()
+	public void getLoginPanel(final JFrame cont)
 	{
 		loginPanel = new JPanel();
 		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
@@ -60,9 +62,9 @@ public class LoginUI
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loginPanel.removeAll();
-				loginPanel.add(new AddUserUI().getAddUserUI());
-				loginPanel.revalidate();
+			
+				new AddUserUI().getAddUserUI(cont);
+			
 			}
 		});
 		JPanel buttonPanel = new JPanel();
@@ -80,7 +82,11 @@ public class LoginUI
 		//loginPanel.add(bufferPanel);
 		loginPanel.add(buttonPanel);
 		loginPanel.add(Box.createVerticalStrut(10));
-		return loginPanel;
+		
+		cont.getContentPane().removeAll();
+		cont.getContentPane().add(loginPanel);
+		cont.getContentPane().revalidate();
+
 	}
 
 }

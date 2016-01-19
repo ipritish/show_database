@@ -126,7 +126,7 @@ public class MainUI {
 		menuPanel.add(new JPanel(),BorderLayout.CENTER);
 		menuPanel.add(menubar,BorderLayout.WEST);
 		panel.add(menuPanel,BorderLayout.NORTH);
-		mainFrame.getContentPane().add(new LoginUI().getLoginPanel());
+		new LoginUI().getLoginPanel(mainFrame);
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
 		mainFrame.pack();
