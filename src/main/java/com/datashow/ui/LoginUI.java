@@ -23,12 +23,13 @@ public class LoginUI
 	{
 		loginPanel = new JPanel();
 		loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
-		loginPanel.add(Box.createHorizontalStrut(500));
+		loginPanel.add(Box.createHorizontalStrut(600));
 		
 		//user name panel
 		JPanel userNamePanel = new JPanel();
 		JLabel userLabel = new JLabel("User Name");
 		JTextField userName = new JTextField(20);
+		//userName.setMaximumSize(new Dimension(80, userName.getPreferredSize().height));
 		userNamePanel.add(userLabel);
 		userNamePanel.add(userName);
 		
