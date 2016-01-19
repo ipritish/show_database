@@ -1,7 +1,10 @@
 package main.java.com.datashow.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -51,9 +54,21 @@ public class LoginUI
 		
 		//button Panel
 		JButton button = new JButton("Login");
+		JButton addUserButton = new JButton("Add User");
+		addUserButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loginPanel.removeAll();
+				loginPanel.add(new AddUserUI().getAddUserUI());
+				loginPanel.revalidate();
+			}
+		});
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		buttonPanel.add(button);
+		buttonPanel.add(Box.createHorizontalStrut(10));
+		buttonPanel.add(addUserButton);
 		
 		//add to main panel
 		loginPanel.add(new JPanel());
