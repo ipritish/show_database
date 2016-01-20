@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -29,7 +31,7 @@ public class LandingPageUI {
 		table.setEnabled(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		sizeRenderer(table);
-		panel.add(table,BorderLayout.CENTER);
+		panel.add(table);
 	}
 	
 	private void showTableDisplay(JPanel panel) 
@@ -41,7 +43,7 @@ public class LandingPageUI {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		sizeRenderer(table);
-		panel.add(table,BorderLayout.CENTER);
+		panel.add(table);
 		
 	}
 	
@@ -79,20 +81,24 @@ public class LandingPageUI {
 	{
 		//TODO use list instead menu
 		mainFrame.getContentPane().removeAll();
-		final JPanel panel = new JPanel();
+		final JPanel landingPanel = new JPanel();
+		landingPanel.add(Box.createHorizontalStrut(600));
+		
 		final JPanel menuPanel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
 		final JMenu menu = new JMenu("Select");
 		JMenuItem itemAnime = new JMenuItem("Anime");
 		JMenuItem itemShows = new JMenuItem("Show");
 		//itemAnime.add(new JMenuItem("test"));
-		panel.setLayout(new BorderLayout());
+		landingPanel.setLayout(new BoxLayout(landingPanel, BoxLayout.Y_AXIS));
+		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.X_AXIS));
+		menuPanel.setSize(menuPanel.getPreferredSize());
 		
 		itemAnime.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				menu.setText("Anime");
-				animeTableDisplay(panel);
+				animeTableDisplay(landingPanel);
 				mainFrame.pack();
 				
 			}
@@ -102,7 +108,7 @@ public class LandingPageUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				menu.setText("Shows");
-				showTableDisplay(panel);
+				showTableDisplay(landingPanel);
 				mainFrame.pack();
 				
 			}
@@ -112,14 +118,17 @@ public class LandingPageUI {
 		menu.add(itemAnime);
 		menu.add(itemShows);
 		menubar.add(menu);
-		JLabel labelExample = new JLabel("Label");
-		labelExample.setSize(20, 10);
-		
-		menuPanel.add(labelExample,BorderLayout.EAST);
-		menuPanel.add(new JPanel(),BorderLayout.CENTER);
-		menuPanel.add(menubar,BorderLayout.WEST);
-		panel.add(menuPanel,BorderLayout.NORTH);
-		mainFrame.getContentPane().add(panel);
+		JLabel labelExample = new JLabel("List: ");
+		labelExample.setSize(labelExample.getPreferredSize());
+		menubar.setSize(menubar.getPreferredSize());
+		//add to menu panel
+		menuPanel.add(labelExample);
+		menuPanel.add(Box.createHorizontalStrut(10));
+		menuPanel.add(menubar);
+
+		landingPanel.add(menubar);
+		landingPanel.add(Box.createVerticalStrut(20));
+		mainFrame.getContentPane().add(landingPanel);
 		mainFrame.getContentPane().revalidate();
 	}
 
