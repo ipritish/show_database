@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -92,7 +93,7 @@ public class LandingPageUI {
 		//itemAnime.add(new JMenuItem("test"));
 		landingPanel.setLayout(new BoxLayout(landingPanel, BoxLayout.Y_AXIS));
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.X_AXIS));
-		menuPanel.setSize(menuPanel.getPreferredSize());
+		//menuPanel.setMaximumSize(menuPanel.getPreferredSize());
 		
 		itemAnime.addActionListener(new ActionListener() {
 			
@@ -119,14 +120,15 @@ public class LandingPageUI {
 		menu.add(itemShows);
 		menubar.add(menu);
 		JLabel labelExample = new JLabel("List: ");
-		labelExample.setSize(labelExample.getPreferredSize());
-		menubar.setSize(menubar.getPreferredSize());
+		labelExample.setAlignmentY(Component.CENTER_ALIGNMENT);
+		menubar.setAlignmentY(Component.CENTER_ALIGNMENT);
 		//add to menu panel
 		menuPanel.add(labelExample);
 		menuPanel.add(Box.createHorizontalStrut(10));
 		menuPanel.add(menubar);
-
-		landingPanel.add(menubar);
+		
+		landingPanel.add(Box.createVerticalStrut(20));
+		landingPanel.add(menuPanel);
 		landingPanel.add(Box.createVerticalStrut(20));
 		mainFrame.getContentPane().add(landingPanel);
 		mainFrame.getContentPane().revalidate();
