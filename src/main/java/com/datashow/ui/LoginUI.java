@@ -12,10 +12,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.com.datashow.database.PasswordEncryptionService;
+import main.java.com.datashow.database.UserCRUD;
 import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.User;
 
@@ -70,17 +73,35 @@ public class LoginUI
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
-		        Session session = sessionFactory.openSession();  
-		        session.beginTransaction();
-		        
-		        String queryString = "from user where username = :username";
-		        Query query = session.createQuery(queryString);
-		        query.setString("username", userName.getText());
-				
-		        Object queryResult = query.uniqueResult();
-		        User user = (User)queryResult;
-		        System.out.println(user.getPassword());
+				if (userName.getText().equals("") == false)
+				{
+					String password = "";
+					for (char a : passField.getPassword())
+					{
+						password+=a;
+					}
+					
+					if (password.equals("") == false)
+					{
+						User user = UserCRUD.getUser(userName.getText());
+						if (user.getPassword().equals(PasswordEncryptionService.getInstance().encrypt(password)))
+				        {
+				        	JOptionPane.showMessageDialog(cont,"login successful","Success",JOptionPane.PLAIN_MESSAGE);
+				        }
+				        else
+				        {
+				        	JOptionPane.showMessageDialog(cont,"Invalid Login credentials","Error",JOptionPane.ERROR_MESSAGE);
+				        }
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(cont,"Password Empty","Error",JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(cont,"User Name Empty","Error",JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		JButton addUserButton = new JButton("Add User");

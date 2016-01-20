@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import main.java.com.datashow.database.UserCRUD;
 import main.java.com.datashow.database.PasswordEncryptionService;
 import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.User;
@@ -105,20 +106,7 @@ public class AddUserUI {
 						{
 							PasswordEncryptionService encService = PasswordEncryptionService.getInstance();
 							
-							SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
-					        Session session = sessionFactory.openSession();  
-					        session.beginTransaction();
-							    
-							User user = new User();  
-							user.setUserName(userName.getText());  
-							user.setPassword(encService.encrypt(originalPassword));
-
-
-							//saving objects to session  
-							session.save(user);  
-							//session.save(user2);  
-							session.getTransaction().commit();  
-							session.close();
+							UserCRUD.addUser(userName.getText(), encService.encrypt(originalPassword));
 							JOptionPane.showMessageDialog(cont,"user added","Inane error",JOptionPane.PLAIN_MESSAGE);
 							JOptionPane.showMessageDialog(cont,"thanks","Inane error",JOptionPane.PLAIN_MESSAGE);
 						}
