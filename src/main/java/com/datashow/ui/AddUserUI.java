@@ -104,8 +104,6 @@ public class AddUserUI {
 						if (originalPassword.equals(originalConfirmPassword))
 						{
 							PasswordEncryptionService encService = PasswordEncryptionService.getInstance();
-							//System.out.println(encService.encrypt(originalPassword));
-							//System.out.println(encService.encrypt(originalConfirmPassword));
 							
 							SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
 					        Session session = sessionFactory.openSession();  

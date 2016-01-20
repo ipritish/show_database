@@ -16,6 +16,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.com.datashow.persistence.HibernateUtil;
+import main.java.com.datashow.persistence.User;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cache.spi.QueryResultsRegion;
+
 public class LoginUI 
 {
 
@@ -30,7 +38,7 @@ public class LoginUI
 		//user name panel
 		JPanel userNamePanel = new JPanel();
 		JLabel userLabel = new JLabel("User Name");
-		JTextField userName = new JTextField(20);
+		final JTextField userName = new JTextField(20);
 		//userName.setMaximumSize(new Dimension(80, userName.getPreferredSize().height));
 		userNamePanel.add(userLabel);
 		userNamePanel.add(userName);
@@ -38,7 +46,7 @@ public class LoginUI
 		//password panel
 		JPanel passwordPanel = new JPanel();
 		JLabel passLabel = new JLabel("Password");
-		JPasswordField passField = new JPasswordField(20);
+		final JPasswordField passField = new JPasswordField(20);
 		passwordPanel.add(passLabel);
 		passwordPanel.add(passField);
 		
@@ -56,7 +64,25 @@ public class LoginUI
 		labelPanel.add(label);
 		
 		//button Panel
-		JButton button = new JButton("Login");
+		JButton loginButton = new JButton("Login");
+		loginButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+		        Session session = sessionFactory.openSession();  
+		        session.beginTransaction();
+		        
+		        String queryString = "from user where username = :username";
+		        Query query = session.createQuery(queryString);
+		        query.setString("username", userName.getText());
+				
+		        Object queryResult = query.uniqueResult();
+		        User user = (User)queryResult;
+		        System.out.println(user.getPassword());
+			}
+		});
 		JButton addUserButton = new JButton("Add User");
 		addUserButton.addActionListener(new ActionListener() {
 			
@@ -69,7 +95,7 @@ public class LoginUI
 		});
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-		buttonPanel.add(button);
+		buttonPanel.add(loginButton);
 		buttonPanel.add(Box.createHorizontalStrut(10));
 		buttonPanel.add(addUserButton);
 		
