@@ -122,6 +122,7 @@ public class LandingPageUI {
 		JLabel labelExample = new JLabel("List: ");
 		labelExample.setAlignmentY(Component.CENTER_ALIGNMENT);
 		menubar.setAlignmentY(Component.CENTER_ALIGNMENT);
+		menubar.setMaximumSize(menubar.getPreferredSize());
 		//add to menu panel
 		menuPanel.add(labelExample);
 		menuPanel.add(Box.createHorizontalStrut(10));
