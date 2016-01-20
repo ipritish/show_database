@@ -10,10 +10,18 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import main.java.com.datashow.database.PasswordEncryptionService;
+import main.java.com.datashow.persistence.HibernateUtil;
+import main.java.com.datashow.persistence.User;
 
 public class AddUserUI {
 
@@ -35,7 +43,7 @@ public class AddUserUI {
 		userNamePanel.setLayout(new BoxLayout(userNamePanel, BoxLayout.X_AXIS));
 		JLabel userLabel = new JLabel("User Name: ",JLabel.RIGHT);
 		userLabel.setPreferredSize(new Dimension(120, 32));
-		JTextField userName = new JTextField(20);
+		final JTextField userName = new JTextField(20);
 		userName.setMaximumSize(userName.getPreferredSize());
 		userName.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 		userNamePanel.add(userLabel);
@@ -46,7 +54,7 @@ public class AddUserUI {
 		passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.X_AXIS));
 		JLabel passLabel = new JLabel("Password: ",JLabel.RIGHT);
 		passLabel.setPreferredSize(new Dimension(120, 32));
-		JPasswordField passField = new JPasswordField(20);
+		final JPasswordField passField = new JPasswordField(20);
 		passField.setMaximumSize(passField.getPreferredSize());
 		passField.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 		passwordPanel.add(passLabel);
@@ -57,7 +65,7 @@ public class AddUserUI {
 		confirmPasswordPanel.setLayout(new BoxLayout(confirmPasswordPanel, BoxLayout.X_AXIS));
 		JLabel confirmPassLabel = new JLabel("Confirm Password: ",JLabel.RIGHT);
 		confirmPassLabel.setPreferredSize(new Dimension(120, 32));		
-		JPasswordField confirmPassField = new JPasswordField(20);
+		final JPasswordField confirmPassField = new JPasswordField(20);
 		confirmPassField.setMaximumSize(confirmPassField.getPreferredSize());
 		confirmPassField.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 		confirmPasswordPanel.add(confirmPassLabel);
@@ -79,12 +87,51 @@ public class AddUserUI {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					if(!isValidated)
+					if(userName.getText().equals("") == false)
 					{
-						cont.getContentPane().removeAll();
-						cont.getContentPane().add(new JFrame("test").add(new JButton("test")));
-						cont.revalidate();
-						cont.pack();
+						String originalPassword = "";
+						String originalConfirmPassword = "";
+						for(char a : passField.getPassword())
+						{
+							originalPassword+=a;
+						}
+						
+						for(char a : confirmPassField.getPassword())
+						{
+							originalConfirmPassword+=a;
+						}
+						System.out.println(originalConfirmPassword + " "+ originalPassword);
+						if (originalPassword.equals(originalConfirmPassword))
+						{
+							PasswordEncryptionService encService = PasswordEncryptionService.getInstance();
+							//System.out.println(encService.encrypt(originalPassword));
+							//System.out.println(encService.encrypt(originalConfirmPassword));
+							
+							SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+					        Session session = sessionFactory.openSession();  
+					        session.beginTransaction();
+							    
+							User user = new User();  
+							user.setUserName(userName.getText());  
+							user.setPassword(encService.encrypt(originalPassword));
+
+
+							//saving objects to session  
+							session.save(user);  
+							//session.save(user2);  
+							session.getTransaction().commit();  
+							session.close();
+							JOptionPane.showMessageDialog(cont,"user added","Inane error",JOptionPane.PLAIN_MESSAGE);
+							JOptionPane.showMessageDialog(cont,"thanks","Inane error",JOptionPane.PLAIN_MESSAGE);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(cont,"password and confirm password don't match","Inane error",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(cont,"Empty User Name","Inane error",JOptionPane.ERROR_MESSAGE);
 					}
 			}
 		});
