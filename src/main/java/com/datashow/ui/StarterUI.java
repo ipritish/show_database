@@ -23,7 +23,7 @@ import main.java.com.datashow.persistence.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class MainUI {
+public class StarterUI {
 	
 	//private static final Logger logger = Logger.getLogger(AppStarter.class);
 	

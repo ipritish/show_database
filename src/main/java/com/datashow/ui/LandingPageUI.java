@@ -17,7 +17,7 @@ import javax.swing.table.TableColumn;
 
 import main.java.com.datashow.constants.TableHeaders;
 
-public class ShowUI {
+public class LandingPageUI {
 	
 	JTable table = new JTable();
 	
@@ -78,6 +78,7 @@ public class ShowUI {
 	public void showGui(final JFrame mainFrame)
 	{
 		//TODO use list instead menu
+		mainFrame.getContentPane().removeAll();
 		final JPanel panel = new JPanel();
 		final JPanel menuPanel = new JPanel();
 		JMenuBar menubar = new JMenuBar();
@@ -118,6 +119,8 @@ public class ShowUI {
 		menuPanel.add(new JPanel(),BorderLayout.CENTER);
 		menuPanel.add(menubar,BorderLayout.WEST);
 		panel.add(menuPanel,BorderLayout.NORTH);
+		mainFrame.getContentPane().add(panel);
+		mainFrame.getContentPane().revalidate();
 	}
 
 }

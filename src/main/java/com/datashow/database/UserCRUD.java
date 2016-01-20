@@ -1,5 +1,6 @@
 package main.java.com.datashow.database;
 
+import main.java.com.datashow.exceptions.UserNotFoundException;
 import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.User;
 
@@ -27,18 +28,25 @@ public class UserCRUD
 		session.close(); 
 	}
 	
-	public static User getUser(String userName)
+	public static User getUser(String userName) throws UserNotFoundException
 	{
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
-        Session session = sessionFactory.openSession();  
-        session.beginTransaction();
+		try
+		{
+			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+        	Session session = sessionFactory.openSession();  
+        	session.beginTransaction();
         
-        String queryString = "from user where username = :username";
-        Query query = session.createQuery(queryString);
-        query.setString("username", userName);
+        	String queryString = "from user where username = :username";
+        	Query query = session.createQuery(queryString);
+        	query.setString("username", userName);
 		
-        Object queryResult = query.uniqueResult();
-        User user = (User)queryResult;
-        return user;
+        	Object queryResult = query.uniqueResult();
+        	User user = (User)queryResult;
+        	return user;
+		}
+        catch(Exception ie)
+		{
+        	throw new UserNotFoundException();
+		}
 	}
 }

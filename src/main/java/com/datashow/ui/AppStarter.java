@@ -11,7 +11,7 @@ public class AppStarter {
 		
 		SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	MainUI start = new MainUI();
+            	StarterUI start = new StarterUI();
         		start.showGui();
             }
         });

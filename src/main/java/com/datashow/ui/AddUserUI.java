@@ -1,6 +1,5 @@
 package main.java.com.datashow.ui;
 
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,20 +13,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import main.java.com.datashow.database.UserCRUD;
 import main.java.com.datashow.database.PasswordEncryptionService;
-import main.java.com.datashow.persistence.HibernateUtil;
+import main.java.com.datashow.exceptions.UserNotFoundException;
 import main.java.com.datashow.persistence.User;
 
 public class AddUserUI {
 
 	JPanel addUserPanel;
 	boolean isValidated = false;
+	User user;
 	
 	public void getAddUserUI(final JFrame cont)
 	{
@@ -104,20 +99,38 @@ public class AddUserUI {
 						System.out.println(originalConfirmPassword + " "+ originalPassword);
 						if (originalPassword.equals(originalConfirmPassword))
 						{
+
 							PasswordEncryptionService encService = PasswordEncryptionService.getInstance();
-							
-							UserCRUD.addUser(userName.getText(), encService.encrypt(originalPassword));
-							JOptionPane.showMessageDialog(cont,"user added","Inane error",JOptionPane.PLAIN_MESSAGE);
-							JOptionPane.showMessageDialog(cont,"thanks","Inane error",JOptionPane.PLAIN_MESSAGE);
+							try 
+							{
+								user = UserCRUD.getUser(userName.getText());
+							} 
+							catch (UserNotFoundException e1) 
+							{
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							if (user == null)
+							{
+								System.out.println(user);
+								UserCRUD.addUser(userName.getText(), encService.encrypt(originalPassword));
+								JOptionPane.showMessageDialog(cont,"user added","Success",JOptionPane.PLAIN_MESSAGE);
+								new LandingPageUI().showGui(cont);
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(cont,"User Already Exist Contact admin for reseting the password","Error",JOptionPane.ERROR_MESSAGE);
+								new LoginUI().getLoginPanel(cont);
+							}
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(cont,"password and confirm password don't match","Inane error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(cont,"password and confirm password don't match","Error",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(cont,"Empty User Name","Inane error",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(cont,"Empty User Name","Error",JOptionPane.ERROR_MESSAGE);
 					}
 			}
 		});
