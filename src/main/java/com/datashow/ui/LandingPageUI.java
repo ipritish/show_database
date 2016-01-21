@@ -1,6 +1,5 @@
 package main.java.com.datashow.ui;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,8 +13,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -25,28 +24,35 @@ import main.java.com.datashow.database.UserSessionDetails;
 public class LandingPageUI {
 	
 	JTable table = new JTable();
+	JScrollPane scrollPane = new JScrollPane(table);
+	
 	
 	private void animeTableDisplay(JPanel panel)
 	{
+	
 		table.removeAll();
-		panel.remove(table);
+		table.setFillsViewportHeight(true);
+		panel.remove(scrollPane);
 		table = new JTable(TableHeaders.placeHoderAnimeData, TableHeaders.animeColumnNames);
+		scrollPane = new JScrollPane(table);
 		table.setEnabled(false);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		sizeRenderer(table);
-		panel.add(table);
+		panel.add(scrollPane);
 	}
 	
 	private void showTableDisplay(JPanel panel) 
 	{
 		
 		table.removeAll();
-		panel.remove(table);		
+		table.setFillsViewportHeight(true);
+		panel.remove(scrollPane);		
 		table = new JTable(TableHeaders.placeHoderShowData, TableHeaders.animeColumnNames);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrollPane = new JScrollPane(table);
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		sizeRenderer(table);
-		panel.add(table);
+		panel.add(scrollPane);
 		
 	}
 	
@@ -86,7 +92,7 @@ public class LandingPageUI {
 		System.out.println(UserSessionDetails.getUserNameLoggedIn());
 		mainFrame.getContentPane().removeAll();
 		final JPanel landingPanel = new JPanel();
-		landingPanel.add(Box.createHorizontalStrut(600));
+		landingPanel.add(Box.createHorizontalStrut(700));
 		
 		final JPanel menuPanel = new JPanel();
 		JMenuBar menubar = new JMenuBar();

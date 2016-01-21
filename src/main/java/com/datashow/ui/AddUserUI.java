@@ -21,7 +21,6 @@ import main.java.com.datashow.persistence.User;
 public class AddUserUI {
 
 	JPanel addUserPanel;
-	boolean isValidated = false;
 	User user;
 	
 	public void getAddUserUI(final JFrame cont)
@@ -109,6 +108,7 @@ public class AddUserUI {
 							{
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
+								user = null;
 							}
 							if (user == null)
 							{
