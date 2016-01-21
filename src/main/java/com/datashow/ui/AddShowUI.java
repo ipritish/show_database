@@ -9,7 +9,7 @@ public class AddShowUI {
 	
 	public void getAddShowUI(final JFrame mainFrame)
 	{
-		
+		//add ui and make operations
 	}
 	
 }
