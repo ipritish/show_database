@@ -19,11 +19,14 @@ public class Show {
 	@Column(name="season")
 	private int season;
 	
-	@Column(name="onAir")
+	@Column(name="OnAir")
 	private boolean isAiring;
 	
 	@Column(name="airDay")
 	private String airDay;
+	
+	@Column(name="user")
+	private String associatedUser;
 	
 	public int getId() {
 		return Id;
@@ -71,6 +74,14 @@ public class Show {
 
 	public void setAirDay(String airDay) {
 		this.airDay = airDay;
+	}
+
+	public String getAssociatedUser() {
+		return associatedUser;
+	}
+
+	public void setAssociatedUser(String associatedUser) {
+		this.associatedUser = associatedUser;
 	}
 
 

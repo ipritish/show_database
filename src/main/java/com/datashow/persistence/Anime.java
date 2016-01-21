@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;  
 import javax.persistence.Id;
 
-@Entity(name="anime")
+@Entity(name="animes")
 public class Anime 
 {
 	@Id
@@ -24,6 +24,9 @@ public class Anime
 	
 	@Column(name="airDay")
 	private String airDay;
+	
+	@Column(name="user")
+	private String associatedUser;
 
 	public int getId() {
 		return Id;
@@ -71,6 +74,14 @@ public class Anime
 
 	public void setAirDay(String airDay) {
 		this.airDay = airDay;
+	}
+
+	public String getAssociatedUser() {
+		return associatedUser;
+	}
+
+	public void setAssociatedUser(String associatedUser) {
+		this.associatedUser = associatedUser;
 	}
 
 }

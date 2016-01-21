@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import main.java.com.datashow.database.PasswordEncryptionService;
 import main.java.com.datashow.database.UserCRUD;
+import main.java.com.datashow.database.UserSessionDetails;
 import main.java.com.datashow.exceptions.UserNotFoundException;
 import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.User;
@@ -92,6 +93,8 @@ public class LoginUI
 								if (user.getPassword().equals(PasswordEncryptionService.getInstance().encrypt(password)))
 						        {
 						        	JOptionPane.showMessageDialog(cont,"login successful","Success",JOptionPane.PLAIN_MESSAGE);
+						        	UserSessionDetails.setUserNameLoggedIn(user.getUserName());
+						        	UserSessionDetails.setUserLoggedIn(true);
 						        	new LandingPageUI().showGui(cont);
 						        }
 						        else

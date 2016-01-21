@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -19,6 +20,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import main.java.com.datashow.constants.TableHeaders;
+import main.java.com.datashow.database.UserSessionDetails;
 
 public class LandingPageUI {
 	
@@ -80,7 +82,8 @@ public class LandingPageUI {
 	
 	public void showGui(final JFrame mainFrame)
 	{
-		//TODO use list instead menu
+		//list can be used instead menu later test list
+		System.out.println(UserSessionDetails.getUserNameLoggedIn());
 		mainFrame.getContentPane().removeAll();
 		final JPanel landingPanel = new JPanel();
 		landingPanel.add(Box.createHorizontalStrut(600));
@@ -123,10 +126,20 @@ public class LandingPageUI {
 		labelExample.setAlignmentY(Component.CENTER_ALIGNMENT);
 		menubar.setAlignmentY(Component.CENTER_ALIGNMENT);
 		menubar.setMaximumSize(menubar.getPreferredSize());
+		
+		//Add Button
+		JButton addShowEntry = new JButton("Add Show");
+		JButton addAnimeEntry = new JButton("Add Anime");
+		addShowEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
+		addAnimeEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		//add to menu panel
 		menuPanel.add(labelExample);
 		menuPanel.add(Box.createHorizontalStrut(10));
 		menuPanel.add(menubar);
+		menuPanel.add(Box.createHorizontalStrut(10));
+		menuPanel.add(addShowEntry);
+		menuPanel.add(Box.createHorizontalStrut(10));
+		menuPanel.add(addAnimeEntry);
 		
 		landingPanel.add(Box.createVerticalStrut(20));
 		landingPanel.add(menuPanel);
