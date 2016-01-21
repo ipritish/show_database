@@ -3,6 +3,7 @@ package main.java.com.datashow.ui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,14 +27,13 @@ public class LandingPageUI {
 	JTable table = new JTable();
 	JScrollPane scrollPane = new JScrollPane(table);
 	
-	
 	private void animeTableDisplay(JPanel panel)
 	{
 	
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);
-		table = new JTable(TableHeaders.placeHoderAnimeData, TableHeaders.animeColumnNames);
+		table = new JTable(TableHeaders.getPlaceHolderAnimeData(), TableHeaders.getAnimeColumns());
 		scrollPane = new JScrollPane(table);
 		table.setEnabled(false);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -47,7 +47,8 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
-		table = new JTable(TableHeaders.placeHoderShowData, TableHeaders.animeColumnNames);
+		table = new JTable(TableHeaders.getPlaceHolderShowData(), TableHeaders.getShowColumns());
+		//new JTable(rowData, columnNames)
 		scrollPane = new JScrollPane(table);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
