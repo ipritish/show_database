@@ -136,6 +136,14 @@ public class LandingPageUI {
 		
 		//Add Button
 		JButton addShowEntry = new JButton("Add Show");
+		addShowEntry.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddShowUI().getAddShowUI(mainFrame);
+				
+			}
+		});
 		JButton addAnimeEntry = new JButton("Add Anime");
 		addShowEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		addAnimeEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
