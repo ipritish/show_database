@@ -3,6 +3,7 @@ package main.java.com.datashow.ui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,7 +19,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import main.java.com.datashow.constants.TableHeaders;
+import main.java.com.datashow.database.ShowCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
+import main.java.com.datashow.datamodel.ShowData;
 
 public class LandingPageUI {
 	
@@ -45,7 +48,7 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
-		table = new JTable(TableHeaders.getPlaceHolderShowData(), TableHeaders.getShowColumns());
+		table = new JTable(ShowData.getShowData(), TableHeaders.getShowColumns());
 		//new JTable(rowData, columnNames)
 		scrollPane = new JScrollPane(table);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -87,6 +90,7 @@ public class LandingPageUI {
 	
 	public void showGui(final JFrame mainFrame)
 	{
+		ShowData.setShowData(ShowCRUD.getAllShows());
 		//list can be used instead menu later test list
 		System.out.println(UserSessionDetails.getUserNameLoggedIn());
 		mainFrame.getContentPane().removeAll();

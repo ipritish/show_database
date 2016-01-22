@@ -9,8 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.java.com.datashow.database.ShowCRUD;
+import main.java.com.datashow.database.UserSessionDetails;
+import main.java.com.datashow.datamodel.AnimeData;
+import main.java.com.datashow.datamodel.ShowData;
 
 public class AddShowUI {
 	
@@ -61,7 +67,7 @@ public class AddShowUI {
 		JPanel showAiringDetailsPanel = new JPanel();
 		showAiringDetailsPanel.setLayout(new BoxLayout(showAiringDetailsPanel, BoxLayout.X_AXIS));
 		JLabel isAiringLabel = new JLabel("On Air: ",JLabel.RIGHT);
-		JCheckBox isAiring = new JCheckBox();
+		final JCheckBox isAiring = new JCheckBox();
 		isAiring.setMaximumSize(isAiring.getPreferredSize());
 		isAiring.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 		//show air day		
@@ -81,6 +87,39 @@ public class AddShowUI {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		JButton addShowButton = new JButton("Add Show");
+		addShowButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String name = showName.getText();
+				double rating = 0.0;
+				int season = 0;
+				try
+				{
+					rating = Double.parseDouble(showRating.getText());
+				}
+				catch(NumberFormatException ne)
+				{
+					JOptionPane.showMessageDialog(mainFrame,"Rating is not double","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				try
+				{
+					season = Integer.parseInt(showSeason.getText());
+				}
+				catch(NumberFormatException ne)
+				{
+					JOptionPane.showMessageDialog(mainFrame,"Season is not an integer","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				boolean onAir = isAiring.isSelected();
+				String airDay = showAirDay.getText();
+				ShowCRUD.addShow(name, rating, season, onAir, airDay, UserSessionDetails.getUserNameLoggedIn());
+				JOptionPane.showMessageDialog(mainFrame,"show added","Success",JOptionPane.PLAIN_MESSAGE);
+				new LandingPageUI().showGui(mainFrame);
+				
+				
+			}
+		});
 		JButton cancelButton = new JButton("Cancel");
 		
 		cancelButton.addActionListener(new ActionListener() {
