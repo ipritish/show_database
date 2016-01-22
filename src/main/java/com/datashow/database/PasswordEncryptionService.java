@@ -5,15 +5,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import sun.misc.BASE64Encoder;
-import sun.misc.CharacterEncoder;
 
+@SuppressWarnings("restriction")
 public final class PasswordEncryptionService 
 {
 	private static PasswordEncryptionService passWordEncryptionInstance;
 	
 	private PasswordEncryptionService(){}
 	
-	@SuppressWarnings("restriction")
 	public synchronized String encrypt(String password)
 	{
 		String hashedPassword = "";

@@ -3,8 +3,6 @@ package main.java.com.datashow.ui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -145,6 +143,14 @@ public class LandingPageUI {
 			}
 		});
 		JButton addAnimeEntry = new JButton("Add Anime");
+		addAnimeEntry.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddAnimeUI().getAddAnimeUI(mainFrame);
+				
+			}
+		});
 		addShowEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		addAnimeEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		//add to menu panel
@@ -161,6 +167,7 @@ public class LandingPageUI {
 		landingPanel.add(Box.createVerticalStrut(20));
 		mainFrame.getContentPane().add(landingPanel);
 		mainFrame.getContentPane().revalidate();
+		mainFrame.pack();
 	}
 
 }

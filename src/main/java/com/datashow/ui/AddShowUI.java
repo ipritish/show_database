@@ -1,5 +1,8 @@
 package main.java.com.datashow.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -73,8 +76,25 @@ public class AddShowUI {
 		showAiringDetailsPanel.add(Box.createHorizontalStrut(20));
 		showAiringDetailsPanel.add(showAirDayLabel);
 		showAiringDetailsPanel.add(showAirDay);
-		//add button
+		
+		//add button Panel
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		JButton addShowButton = new JButton("Add Show");
+		JButton cancelButton = new JButton("Cancel");
+		
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new LandingPageUI().showGui(mainFrame);
+				
+			}
+		});
+		buttonPanel.add(addShowButton);
+		buttonPanel.add(Box.createHorizontalStrut(20));
+		buttonPanel.add(cancelButton);
+		
 		//add all panels
 		addShowPanel.add(Box.createVerticalStrut(20));
 		addShowPanel.add(showNamePanel);
@@ -83,7 +103,7 @@ public class AddShowUI {
 		addShowPanel.add(Box.createVerticalStrut(10));
 		addShowPanel.add(showAiringDetailsPanel);
 		addShowPanel.add(Box.createVerticalStrut(10));
-		addShowPanel.add(addShowButton);
+		addShowPanel.add(buttonPanel);
 		addShowPanel.add(Box.createVerticalStrut(20));
 		
 		
