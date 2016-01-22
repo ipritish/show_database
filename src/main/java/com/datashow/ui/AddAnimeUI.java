@@ -9,8 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.java.com.datashow.database.AnimeCRUD;
+import main.java.com.datashow.database.ShowCRUD;
+import main.java.com.datashow.database.UserSessionDetails;
 
 public class AddAnimeUI {
 	
@@ -61,7 +66,7 @@ JPanel addAnimePanel;
 		JPanel animeAiringDetailsPanel = new JPanel();
 		animeAiringDetailsPanel.setLayout(new BoxLayout(animeAiringDetailsPanel, BoxLayout.X_AXIS));
 		JLabel isAiringLabel = new JLabel("On Air: ",JLabel.RIGHT);
-		JCheckBox isAiring = new JCheckBox();
+		final JCheckBox isAiring = new JCheckBox();
 		isAiring.setMaximumSize(isAiring.getPreferredSize());
 		isAiring.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 		//anime air day		
@@ -81,6 +86,37 @@ JPanel addAnimePanel;
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		JButton addAnimeButton = new JButton("Add Anime");
+		addAnimeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = animeName.getText();
+				double rating = 0;
+				int season = 0;
+				try
+				{
+					rating = Double.parseDouble(animeRating.getText());
+				}
+				catch(NumberFormatException ne)
+				{
+					JOptionPane.showMessageDialog(mainFrame,"Rating is not double","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				try
+				{
+					season = Integer.parseInt(animeSeason.getText());
+				}
+				catch(NumberFormatException ne)
+				{
+					JOptionPane.showMessageDialog(mainFrame,"Season is not an integer","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				boolean onAir = isAiring.isSelected();
+				String airDay = animeAirDay.getText();
+				AnimeCRUD.addAnime(name, rating, season, onAir, airDay, UserSessionDetails.getUserNameLoggedIn());
+				JOptionPane.showMessageDialog(mainFrame,"anime added","Success",JOptionPane.PLAIN_MESSAGE);
+				new LandingPageUI().showGui(mainFrame);
+				
+			}
+		});
 		JButton cancelButton = new JButton("Cancel");
 		
 		cancelButton.addActionListener(new ActionListener() {
