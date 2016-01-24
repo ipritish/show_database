@@ -183,6 +183,7 @@ public class LandingPageUI {
 		menuPanel.add(addShowEntry);
 		menuPanel.add(Box.createHorizontalStrut(10));
 		menuPanel.add(addAnimeEntry);
+		menuPanel.add(Box.createHorizontalStrut(300));
 		menuPanel.add(logoutButton);
 		
 		landingPanel.add(Box.createVerticalStrut(20));
