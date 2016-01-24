@@ -152,6 +152,7 @@ public class LoginUI
 		cont.getContentPane().removeAll();
 		cont.getContentPane().add(loginPanel);
 		cont.getContentPane().revalidate();
+		cont.pack();
 
 	}
 

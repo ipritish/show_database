@@ -44,7 +44,9 @@ public class AnimeCRUD
         
         ArrayList<Anime> allShows = new ArrayList<Anime>();
         
-        Query queryResult = session.createQuery("from animes");
+        Query queryResult = session.createQuery("from animes where associatedUser = :user");
+        queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
+        
         allShows = (ArrayList<Anime>) queryResult.list();
         
         for(int i=0; i<allShows.size();i++)

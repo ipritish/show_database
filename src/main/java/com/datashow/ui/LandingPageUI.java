@@ -161,8 +161,20 @@ public class LandingPageUI {
 				
 			}
 		});
+		JButton logoutButton = new JButton("Logout");
+		logoutButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UserSessionDetails.setUserLoggedIn(false);
+				UserSessionDetails.setUserNameLoggedIn("");
+				new LoginUI().getLoginPanel(mainFrame);
+			}
+		});
 		addShowEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		addAnimeEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
+		logoutButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+		logoutButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		//add to menu panel
 		menuPanel.add(labelExample);
 		menuPanel.add(Box.createHorizontalStrut(10));
@@ -171,6 +183,7 @@ public class LandingPageUI {
 		menuPanel.add(addShowEntry);
 		menuPanel.add(Box.createHorizontalStrut(10));
 		menuPanel.add(addAnimeEntry);
+		menuPanel.add(logoutButton);
 		
 		landingPanel.add(Box.createVerticalStrut(20));
 		landingPanel.add(menuPanel);

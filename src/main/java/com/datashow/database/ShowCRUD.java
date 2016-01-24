@@ -45,7 +45,9 @@ public class ShowCRUD
         
         ArrayList<Show> allShows = new ArrayList<Show>();
         
-        Query queryResult = session.createQuery("from shows");
+        Query queryResult = session.createQuery("from shows where associatedUser = :user");
+        queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
+        
         allShows = (ArrayList<Show>) queryResult.list();
         
         for(int i=0; i<allShows.size();i++)
