@@ -1,8 +1,10 @@
 package main.java.com.datashow.datamodel;
 
-import javax.swing.table.AbstractTableModel;
+import java.util.Vector;
 
-public class CustomTableModel extends AbstractTableModel
+import javax.swing.table.DefaultTableModel;
+
+public class CustomTableModel extends DefaultTableModel
 {
 
 	/**
@@ -10,9 +12,9 @@ public class CustomTableModel extends AbstractTableModel
 	 */
 	private static final long serialVersionUID = 1758711250154255480L;
 	
-	public CustomTableModel()
+	public CustomTableModel(Vector dataVector, Vector columVector)
 	{
-		super();
+		super(dataVector,columVector);
 	}
 
 	@Override
