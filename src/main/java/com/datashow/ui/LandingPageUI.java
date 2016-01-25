@@ -17,12 +17,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.text.TabExpander;
 
 import main.java.com.datashow.constants.TableHeaders;
 import main.java.com.datashow.database.AnimeCRUD;
 import main.java.com.datashow.database.ShowCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
 import main.java.com.datashow.datamodel.AnimeData;
+import main.java.com.datashow.datamodel.CustomTableModel;
 import main.java.com.datashow.datamodel.ShowData;
 
 public class LandingPageUI {
@@ -39,7 +42,9 @@ public class LandingPageUI {
 		panel.remove(scrollPane);
 		table = new JTable(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
 		scrollPane = new JScrollPane(table);
-		table.setEnabled(false);
+		table.setEnabled(true);
+		//use custom table model and custom change listener for the edit
+		CustomTableModel tbModel = new CustomTableModel();
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		sizeRenderer(table);
 		panel.add(scrollPane);
@@ -56,7 +61,7 @@ public class LandingPageUI {
 		//new JTable(rowData, columnNames)
 		scrollPane = new JScrollPane(table);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.setEnabled(false);
+		table.setEnabled(true);
 		sizeRenderer(table);
 		panel.add(scrollPane);
 		
