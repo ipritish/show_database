@@ -2,6 +2,7 @@ package main.java.com.datashow.datamodel;
 
 import java.util.Vector;
 
+import javax.swing.JCheckBox;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,6 +47,13 @@ public class CustomTableModel extends AbstractTableModel
 	public String getColumnName(int column) 
 	{
 		  return columVector.get(column);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Class getColumnClass(int c) 
+	{
+	      return getValueAt(0, c).getClass();
 	}
 
 }

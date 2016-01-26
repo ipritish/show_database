@@ -57,7 +57,8 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
-		table = new JTable(ShowData.getShowData(), TableHeaders.getShowColumns());
+		CustomTableModel tbModel = new CustomTableModel(ShowData.getShowData(), TableHeaders.getShowColumns());
+		table = new JTable(tbModel);
 		//new JTable(rowData, columnNames)
 		scrollPane = new JScrollPane(table);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
