@@ -2,9 +2,10 @@ package main.java.com.datashow.datamodel;
 
 import java.util.Vector;
 
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
-public class CustomTableModel extends DefaultTableModel
+public class CustomTableModel extends AbstractTableModel
 {
 
 	/**
@@ -12,27 +13,39 @@ public class CustomTableModel extends DefaultTableModel
 	 */
 	private static final long serialVersionUID = 1758711250154255480L;
 	
-	public CustomTableModel(Vector dataVector, Vector columVector)
+	private Vector<Vector<Object>> dataVector;
+	private Vector<String> columVector;
+	
+	public CustomTableModel(Vector<Vector<Object>> data, Vector<String> column)
 	{
-		super(dataVector,columVector);
+		dataVector = data;
+		columVector = column;
+		fireTableStructureChanged();
 	}
 
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dataVector.size();
 	}
 
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return columVector.size();
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
+	public Object getValueAt(int rowIndex, int columnIndex) 
+	{
 		// TODO Auto-generated method stub
-		return null;
+		return dataVector.get(rowIndex).get(columnIndex);
+	}
+	
+	@Override
+	public String getColumnName(int column) 
+	{
+		  return columVector.get(column);
 	}
 
 }

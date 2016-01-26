@@ -40,8 +40,8 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);
-		//CustomTableModel tbModel = new CustomTableModel(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
-		table = new JTable(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
+		CustomTableModel tbModel = new CustomTableModel(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
+		table = new JTable(tbModel);
 		scrollPane = new JScrollPane(table);
 		table.setEnabled(true);
 		//use custom table model and custom change listener for the edit
