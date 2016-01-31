@@ -17,9 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.text.TabExpander;
-
 import main.java.com.datashow.constants.TableHeaders;
 import main.java.com.datashow.database.AnimeCRUD;
 import main.java.com.datashow.database.ShowCRUD;
@@ -30,7 +27,10 @@ import main.java.com.datashow.datamodel.ShowData;
 
 public class LandingPageUI {
 	
-	JTable table = new JTable();
+	
+	
+	CustomTableModel tbModel = new CustomTableModel();
+	JTable table = new JTable(tbModel);
 	JScrollPane scrollPane = new JScrollPane(table);
 	
 	private void animeTableDisplay(JPanel panel)
@@ -40,9 +40,7 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);
-		CustomTableModel tbModel = new CustomTableModel(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
-		table = new JTable(tbModel);
-		scrollPane = new JScrollPane(table);
+		tbModel.setTableData(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
 		table.setEnabled(true);
 		//use custom table model and custom change listener for the edit
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -57,10 +55,7 @@ public class LandingPageUI {
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
-		CustomTableModel tbModel = new CustomTableModel(ShowData.getShowData(), TableHeaders.getShowColumns());
-		table = new JTable(tbModel);
-		//new JTable(rowData, columnNames)
-		scrollPane = new JScrollPane(table);
+		tbModel.setTableData(ShowData.getShowData(), TableHeaders.getShowColumns());
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(true);
 		sizeRenderer(table);

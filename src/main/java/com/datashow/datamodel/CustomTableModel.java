@@ -21,7 +21,13 @@ public class CustomTableModel extends AbstractTableModel
 	{
 		dataVector = data;
 		columVector = column;
-		fireTableStructureChanged();
+		//fireTableStructureChanged();
+	}
+
+	public CustomTableModel() 
+	{
+		dataVector = new Vector<Vector<Object>>();
+		columVector = new Vector<String>();
 	}
 
 	@Override
@@ -55,5 +61,13 @@ public class CustomTableModel extends AbstractTableModel
 	{
 	      return getValueAt(0, c).getClass();
 	}
+	
+	public void setTableData(Vector<Vector<Object>> data, Vector<String> column)
+	{
+		columVector = column;
+		dataVector = data;
+		fireTableStructureChanged();
+	}
+	
 
 }
