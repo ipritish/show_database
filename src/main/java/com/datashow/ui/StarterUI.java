@@ -13,7 +13,7 @@ public class StarterUI {
 	{
 		//write logic here if want to skip login in some cases
 		UserSessionDetails.setUserLoggedIn(true);
-		UserSessionDetails.setUserNameLoggedIn("pritish");
+		UserSessionDetails.setUserNameLoggedIn("admin");
 		if (UserSessionDetails.isUserLoggedIn())
 		{
 			new LandingPageUI().showGui(mainFrame);

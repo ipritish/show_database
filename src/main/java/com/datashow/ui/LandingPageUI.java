@@ -162,6 +162,15 @@ public class LandingPageUI {
 				
 			}
 		});
+		JButton addUser = new JButton("Add User");
+		addUser.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddUserUI().getAddUserUI(mainFrame);
+				
+			}
+		});
 		JButton logoutButton = new JButton("Logout");
 		logoutButton.addActionListener(new ActionListener() {
 			
@@ -176,6 +185,7 @@ public class LandingPageUI {
 		addAnimeEntry.setAlignmentY(Component.CENTER_ALIGNMENT);
 		logoutButton.setAlignmentY(Component.CENTER_ALIGNMENT);
 		logoutButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		addUser.setAlignmentY(Component.CENTER_ALIGNMENT);
 		//add to menu panel
 		menuPanel.add(labelExample);
 		menuPanel.add(Box.createHorizontalStrut(10));
@@ -184,7 +194,18 @@ public class LandingPageUI {
 		menuPanel.add(addShowEntry);
 		menuPanel.add(Box.createHorizontalStrut(10));
 		menuPanel.add(addAnimeEntry);
-		menuPanel.add(Box.createHorizontalStrut(300));
+		// add user button only if admin
+		if (UserSessionDetails.getUserNameLoggedIn().equals("admin"))
+		{
+			menuPanel.add(Box.createHorizontalStrut(10));
+			menuPanel.add(addUser);
+			menuPanel.add(Box.createHorizontalStrut(200));
+		}
+		//logout button
+		else
+		{
+			menuPanel.add(Box.createHorizontalStrut(300));
+		}
 		menuPanel.add(logoutButton);
 		
 		landingPanel.add(Box.createVerticalStrut(20));

@@ -36,6 +36,7 @@ public class UserCRUD
         	Session session = sessionFactory.openSession();  
         	session.beginTransaction();
         
+        	
         	String queryString = "from user where username = :username";
         	Query query = session.createQuery(queryString);
         	query.setString("username", userName);

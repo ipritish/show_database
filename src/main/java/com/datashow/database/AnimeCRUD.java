@@ -44,8 +44,21 @@ public class AnimeCRUD
         
         ArrayList<Anime> allShows = new ArrayList<Anime>();
         
-        Query queryResult = session.createQuery("from animes where associatedUser = :user");
-        queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
+        String queryString = "";
+        Query queryResult;
+        
+        if(UserSessionDetails.getUserNameLoggedIn().equals("admin"))
+        {
+        	queryString = "from animes";
+        	queryResult = session.createQuery(queryString);
+        }
+        else
+        {
+        	queryString = "from animes where associatedUser = :user";
+        	queryResult = session.createQuery(queryString);
+            queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
+        }        
+        
         
         allShows = (ArrayList<Anime>) queryResult.list();
         

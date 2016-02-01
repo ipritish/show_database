@@ -1,9 +1,5 @@
 package main.java.com.datashow.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,13 +17,7 @@ import main.java.com.datashow.database.PasswordEncryptionService;
 import main.java.com.datashow.database.UserCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
 import main.java.com.datashow.exceptions.UserNotFoundException;
-import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.User;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cache.spi.QueryResultsRegion;
 
 public class LoginUI 
 {
@@ -123,21 +113,11 @@ public class LoginUI
 				}
 			}
 		});
-		JButton addUserButton = new JButton("Add User");
-		addUserButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			
-				new AddUserUI().getAddUserUI(cont);
-			
-			}
-		});
+
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		buttonPanel.add(loginButton);
-		buttonPanel.add(Box.createHorizontalStrut(10));
-		buttonPanel.add(addUserButton);
+
 		
 		//add to main panel
 		loginPanel.add(new JPanel());

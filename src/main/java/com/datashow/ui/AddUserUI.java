@@ -119,8 +119,8 @@ public class AddUserUI {
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(cont,"User Already Exist Contact admin for reseting the password","Error",JOptionPane.ERROR_MESSAGE);
-								new LoginUI().getLoginPanel(cont);
+								JOptionPane.showMessageDialog(cont,"User Already Exist Edit The Already Existing User","Error",JOptionPane.ERROR_MESSAGE);
+								new LandingPageUI().showGui(cont);
 							}
 						}
 						else
