@@ -69,5 +69,11 @@ public class CustomTableModel extends AbstractTableModel
 		fireTableStructureChanged();
 	}
 	
+	@Override
+	public boolean isCellEditable(int row, int col)
+	{ 
+		return true; 
+	}
+	
 
 }
