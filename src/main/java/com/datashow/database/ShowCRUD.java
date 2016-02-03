@@ -47,17 +47,10 @@ public class ShowCRUD
         String queryString = "";
         Query queryResult;
         
-        if(UserSessionDetails.getUserNameLoggedIn().equals("admin"))
-        {
-        	queryString = "from shows";
-        	queryResult = session.createQuery(queryString);
-        }
-        else
-        {
-        	queryString = "from shows where associatedUser = :user";
-        	queryResult = session.createQuery(queryString);
-            queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
-        }  
+        queryString = "from shows where associatedUser = :user";
+        queryResult = session.createQuery(queryString);
+        queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
+          
         
         allShows = (ArrayList<Show>) queryResult.list();
         

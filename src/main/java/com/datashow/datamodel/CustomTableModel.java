@@ -78,10 +78,7 @@ public class CustomTableModel extends AbstractTableModel
 	@Override
 	public boolean isCellEditable(int row, int col)
 	{ 
-		if (UserSessionDetails.getUserNameLoggedIn().equals("admin"))
-			return false;
-		else
-			return (col != 0);
+		return (col != 0);
 	}
 	
 	@Override
