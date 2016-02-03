@@ -8,6 +8,8 @@ public class TableHeaders {
 
 	private static Vector<String> showColumns = new Vector<String>();
 	private static Vector<String> animeColumns = new Vector<String>();
+	public static final String TYPE_SHOW = "Show";
+	public static final String TYPE_ANIME = "Anime";
 	
 	public static Vector<String> getShowColumns()
 	{

@@ -41,6 +41,7 @@ public class LandingPageUI {
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);
 		tbModel.setTableData(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
+		tbModel.setDataType(TableHeaders.TYPE_ANIME);
 		table.setEnabled(true);
 		//use custom table model and custom change listener for the edit
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -56,6 +57,7 @@ public class LandingPageUI {
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
 		tbModel.setTableData(ShowData.getShowData(), TableHeaders.getShowColumns());
+		tbModel.setDataType(TableHeaders.TYPE_SHOW);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(true);
 		sizeRenderer(table);

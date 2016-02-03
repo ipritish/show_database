@@ -1,11 +1,11 @@
 package main.java.com.datashow.database;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import main.java.com.datashow.persistence.Anime;
 import main.java.com.datashow.persistence.HibernateUtil;
-import main.java.com.datashow.persistence.Show;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -74,6 +74,36 @@ public class AnimeCRUD
         	allData.addElement(rowData);
         }
 		 return allData;
+	}
+	
+	public static void updateAnimeEntry(Anime anime)
+	{
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+        Session session = sessionFactory.openSession();  
+        session.beginTransaction();
+        
+        session.update(anime);
+        
+        session.getTransaction().commit();  
+		session.close(); 
+	}
+	
+	public static Anime getSingleEntryFromName(String anime_name)
+	{
+		Anime anime = null;
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
+        Session session = sessionFactory.openSession();  
+        session.beginTransaction();
+        Query query = session.createQuery("from animes where animeName=:name");
+        query.setString("name", anime_name);
+		@SuppressWarnings("unchecked")
+		ArrayList<Anime> animeList = (ArrayList<Anime>) query.list(); 
+		if (animeList.size() == 1)
+		{
+			anime = animeList.get(0);
+		}
+        
+        return anime;
 	}
 
 }

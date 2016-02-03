@@ -2,9 +2,14 @@ package main.java.com.datashow.datamodel;
 
 import java.util.Vector;
 
-import javax.swing.JCheckBox;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
+import main.java.com.datashow.constants.TableHeaders;
+import main.java.com.datashow.database.AnimeCRUD;
+import main.java.com.datashow.database.ShowCRUD;
+import main.java.com.datashow.database.UserSessionDetails;
+import main.java.com.datashow.persistence.Anime;
+import main.java.com.datashow.persistence.Show;
 
 public class CustomTableModel extends AbstractTableModel
 {
@@ -16,6 +21,7 @@ public class CustomTableModel extends AbstractTableModel
 	
 	private Vector<Vector<Object>> dataVector;
 	private Vector<String> columVector;
+	private String dataType;
 	
 	public CustomTableModel(Vector<Vector<Object>> data, Vector<String> column)
 	{
@@ -72,7 +78,74 @@ public class CustomTableModel extends AbstractTableModel
 	@Override
 	public boolean isCellEditable(int row, int col)
 	{ 
-		return true; 
+		if (UserSessionDetails.getUserNameLoggedIn().equals("admin"))
+			return false;
+		else
+			return (col != 0);
+	}
+	
+	@Override
+	public void setValueAt(Object value, int rowIndex, int columnIndex)
+	{
+		Vector<Object> temp = dataVector.get(rowIndex);
+		
+		if (value instanceof Boolean)
+		{
+			dataVector.get(rowIndex).set(columnIndex, (Boolean)value);
+		}
+		else if (value instanceof Double)
+		{
+			dataVector.get(rowIndex).set(columnIndex, (Double) value);
+		}
+		else if (value instanceof Integer)
+		{
+			dataVector.get(rowIndex).set(columnIndex, (Integer) value);
+		}
+		else
+		{
+			dataVector.get(rowIndex).set(columnIndex, (String) value);
+		}
+		
+		//check type of data
+		if (getDataType().equals(TableHeaders.TYPE_ANIME))
+		{
+			Anime anime = new Anime();
+			//anime.setAirDay(airDay);
+			anime.setAnimeName((String)temp.get(0));
+			anime.setRating((Double)temp.get(1));
+			anime.setSeason((Integer)temp.get(2));
+			anime.setAiring((Boolean)temp.get(3));
+			anime.setAirDay((String)temp.get(4));
+			Anime getFromDB = AnimeCRUD.getSingleEntryFromName(anime.getAnimeName());
+			anime.setId(getFromDB.getId());
+			anime.setAssociatedUser(UserSessionDetails.getUserNameLoggedIn());
+			AnimeCRUD.updateAnimeEntry(anime);
+				
+		}
+		if (getDataType().equals(TableHeaders.TYPE_SHOW))
+		{
+			Show show = new Show();
+			//anime.setAirDay(airDay);
+			show.setShowName((String)temp.get(0));
+			show.setRating((Double)temp.get(1));
+			show.setSeason((Integer)temp.get(2));
+			show.setAiring((Boolean)temp.get(3));
+			show.setAirDay((String)temp.get(4));
+			Show getFromDB = ShowCRUD.getSingleEntryFromName(show.getShowName());
+			show.setId(getFromDB.getId());
+			show.setAssociatedUser(UserSessionDetails.getUserNameLoggedIn());
+			ShowCRUD.updateShowEntry(show);
+		}
+		
+		fireTableDataChanged();
+	}
+
+	public String getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
 	}
 	
 
