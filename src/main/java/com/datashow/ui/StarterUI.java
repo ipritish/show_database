@@ -12,8 +12,8 @@ public class StarterUI {
 	public void showGui()
 	{
 		//write logic here if want to skip login in some cases
-		UserSessionDetails.setUserLoggedIn(true);
-		UserSessionDetails.setUserNameLoggedIn("admin");
+		UserSessionDetails.setUserLoggedIn(false);
+		UserSessionDetails.setUserNameLoggedIn(null);
 		if (UserSessionDetails.isUserLoggedIn())
 		{
 			new LandingPageUI().showGui(mainFrame);
