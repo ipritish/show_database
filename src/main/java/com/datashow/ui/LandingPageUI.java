@@ -27,8 +27,6 @@ import main.java.com.datashow.datamodel.ShowData;
 
 public class LandingPageUI {
 	
-	
-	
 	CustomTableModel tbModel = new CustomTableModel();
 	JTable table = new JTable(tbModel);
 	JScrollPane scrollPane = new JScrollPane(table);
@@ -97,7 +95,7 @@ public class LandingPageUI {
 	
 	public void showGui(final JFrame mainFrame)
 	{
-
+		tbModel.setFrame(mainFrame);
 		ShowData.setShowData(ShowCRUD.getAllShows());
 		AnimeData.setAnimeData(AnimeCRUD.getAllAnimes());
 		//list can be used instead menu later test list

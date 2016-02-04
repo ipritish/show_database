@@ -2,6 +2,8 @@ package main.java.com.datashow.datamodel;
 
 import java.util.Vector;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 import main.java.com.datashow.constants.TableHeaders;
@@ -22,6 +24,7 @@ public class CustomTableModel extends AbstractTableModel
 	private Vector<Vector<Object>> dataVector;
 	private Vector<String> columVector;
 	private String dataType;
+	private JFrame mainFrame;
 	
 	public CustomTableModel(Vector<Vector<Object>> data, Vector<String> column)
 	{
@@ -34,6 +37,11 @@ public class CustomTableModel extends AbstractTableModel
 	{
 		dataVector = new Vector<Vector<Object>>();
 		columVector = new Vector<String>();
+	}
+	
+	public void setFrame(JFrame frame)
+	{
+		mainFrame = frame;
 	}
 
 	@Override
@@ -78,6 +86,10 @@ public class CustomTableModel extends AbstractTableModel
 	@Override
 	public boolean isCellEditable(int row, int col)
 	{ 
+		if(col == 0)
+		{
+			JOptionPane.showMessageDialog(mainFrame,"Can't change the name","Error",JOptionPane.ERROR_MESSAGE);
+		}
 		return (col != 0);
 	}
 	
