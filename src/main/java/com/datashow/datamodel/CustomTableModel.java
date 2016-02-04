@@ -69,7 +69,7 @@ public class CustomTableModel extends AbstractTableModel
 		  return columVector.get(column);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Class getColumnClass(int c) 
 	{
