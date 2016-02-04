@@ -177,7 +177,7 @@ public class LandingPageUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UserSessionDetails.setUserLoggedIn(false);
-				UserSessionDetails.setUserNameLoggedIn("");
+				UserSessionDetails.setUserNameLoggedIn(null);
 				new LoginUI().getLoginPanel(mainFrame);
 			}
 		});

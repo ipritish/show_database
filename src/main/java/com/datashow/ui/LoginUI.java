@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import main.java.com.datashow.database.PasswordEncryptionService;
 import main.java.com.datashow.database.UserCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
+import main.java.com.datashow.datamodel.LoginHandler;
 import main.java.com.datashow.exceptions.UserNotFoundException;
 import main.java.com.datashow.persistence.User;
 
@@ -65,51 +66,17 @@ public class LoginUI
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (userName.getText().equals("") == false)
+				String password = "";
+				for (char a : passField.getPassword())
 				{
-					String password = "";
-					for (char a : passField.getPassword())
-					{
-						password+=a;
-					}
-					
-					if (password.equals("") == false)
-					{
-						try
-						{
-							User user = UserCRUD.getUser(userName.getText());
-							if (user != null)
-							{
-								if (user.getPassword().equals(PasswordEncryptionService.getInstance().encrypt(password)))
-						        {
-						        	JOptionPane.showMessageDialog(cont,"login successful","Success",JOptionPane.PLAIN_MESSAGE);
-						        	UserSessionDetails.setUserNameLoggedIn(user.getUserName());
-						        	UserSessionDetails.setUserLoggedIn(true);
-						        	new LandingPageUI().showGui(cont);
-						        }
-						        else
-						        {
-						        	JOptionPane.showMessageDialog(cont,"Invalid Login credentials","Error",JOptionPane.ERROR_MESSAGE);
-						        }
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(cont,"user not found","Error",JOptionPane.ERROR_MESSAGE);
-							}
-						}
-						catch (UserNotFoundException une)
-						{
-							JOptionPane.showMessageDialog(cont,"user not found","Error",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(cont,"Password Empty","Error",JOptionPane.ERROR_MESSAGE);
-					}
+					password+=a;
 				}
-				else
+				if (LoginHandler.checkCredentials(userName.getText(), password,cont));
 				{
-					JOptionPane.showMessageDialog(cont,"User Name Empty","Error",JOptionPane.ERROR_MESSAGE);
+					if (UserSessionDetails.isUserLoggedIn())
+					{
+			        	new LandingPageUI().showGui(cont);
+					}
 				}
 			}
 		});
