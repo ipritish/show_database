@@ -19,12 +19,17 @@ public class Reminder {
     class RemindTask extends TimerTask {
         public void run() {
             System.out.println("Time's up!");
+            
             timer.cancel(); //Terminate the timer thread
         }
+        
     }
 
     public static void main(String args[]) {
         new Reminder(5);
         System.out.println("Task scheduled.");
+        Thread t = new Thread(new RunMessage());
+        t.setDaemon(true);
+        t.start();
     }
 }
