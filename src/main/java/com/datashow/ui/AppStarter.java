@@ -27,5 +27,6 @@ public class AppStarter {
         });
 		
 		while(t.isAlive());
+		System.exit(0);
 	}
 }
