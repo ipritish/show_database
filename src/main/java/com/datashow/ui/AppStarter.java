@@ -2,7 +2,7 @@ package main.java.com.datashow.ui;
 
 import javax.swing.SwingUtilities;
 
-import test.RunMessage;
+import test.java.RunMessage;
 
 public class AppStarter {
 	
