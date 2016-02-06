@@ -20,13 +20,15 @@ public class AppStarter {
             	//Thread t = new Thread(new RunMessage());
             	//t.start();
                 System.out.println("Task scheduled.");
+                System.out.println(SwingUtilities.isEventDispatchThread());
             	StarterUI start = new StarterUI();
         		start.showGui();
         		//while (t.isAlive());
             }
         });
 		
-		while(t.isAlive());
-		System.exit(0);
+		//while(t.isAlive());
+		
+		//System.exit(0);
 	}
 }

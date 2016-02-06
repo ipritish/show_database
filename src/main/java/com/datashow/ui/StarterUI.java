@@ -25,7 +25,7 @@ public class StarterUI {
 		mainFrame.setVisible(true);
 		mainFrame.setLocation(40, 40);
 		mainFrame.pack();
-		//mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//dataBaseOperate();
 	}
 
