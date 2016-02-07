@@ -10,9 +10,9 @@ public class AppStarter {
 	public static void main(String[] args) {
 		//System.out.println(getLocalCurrentDate());
 		
-		Thread t = new Thread(new RunMessage());
-		t.setDaemon(true);
-		t.start();
+		//Thread t = new Thread(new RunMessage());
+		//t.setDaemon(true);
+		//t.start();
 		
 		SwingUtilities.invokeLater(new Runnable() {
             public void run() 
