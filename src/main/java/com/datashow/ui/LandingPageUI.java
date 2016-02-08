@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Action;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,19 +18,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+
 import main.java.com.datashow.constants.TableHeaders;
 import main.java.com.datashow.database.AnimeCRUD;
 import main.java.com.datashow.database.ShowCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
 import main.java.com.datashow.datamodel.AnimeData;
+import main.java.com.datashow.datamodel.CustomTableAction;
 import main.java.com.datashow.datamodel.CustomTableModel;
 import main.java.com.datashow.datamodel.ShowData;
+import main.java.com.datashow.datamodel.TableCellListener;
 
 public class LandingPageUI {
 	
 	CustomTableModel tbModel = new CustomTableModel();
 	JTable table = new JTable(tbModel);
 	JScrollPane scrollPane = new JScrollPane(table);
+	Action action = new CustomTableAction();	
+	
+	TableCellListener tcl = new TableCellListener(table, action);
 	
 	private void animeTableDisplay(JPanel panel)
 	{
