@@ -3,6 +3,7 @@ package main.java.com.datashow.database;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import main.java.com.datashow.datamodel.ShowData;
 import main.java.com.datashow.persistence.Anime;
 import main.java.com.datashow.persistence.HibernateUtil;
 import main.java.com.datashow.persistence.Show;
@@ -53,6 +54,7 @@ public class ShowCRUD
           
         
         allShows = (ArrayList<Show>) queryResult.list();
+        ShowData.getShowData().clear();
         
         for(int i=0; i<allShows.size();i++)
         {
@@ -64,6 +66,7 @@ public class ShowCRUD
         	rowData.addElement(singleShow.isAiring());
         	rowData.addElement(singleShow.getAirDay());
         	allData.addElement(rowData);
+        	ShowData.getShowData().add(singleShow);
         }
 		 return allData;
 	}

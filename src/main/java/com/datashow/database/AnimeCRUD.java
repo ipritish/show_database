@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import main.java.com.datashow.datamodel.AnimeData;
 import main.java.com.datashow.persistence.Anime;
 import main.java.com.datashow.persistence.HibernateUtil;
 
@@ -53,10 +54,11 @@ public class AnimeCRUD
 
         
         allShows = (ArrayList<Anime>) queryResult.list();
+        AnimeData.getAnimeData().clear();
         
         for(int i=0; i<allShows.size();i++)
         {
-        	Anime singleAnime = (Anime) allShows.get(i);
+           	Anime singleAnime = (Anime) allShows.get(i);
         	Vector<Object> rowData = new Vector<Object>();
         	rowData.addElement(singleAnime.getAnimeName());
         	rowData.addElement(singleAnime.getRating());
@@ -64,8 +66,10 @@ public class AnimeCRUD
         	rowData.addElement(singleAnime.isAiring());
         	rowData.addElement(singleAnime.getAirDay());
         	allData.addElement(rowData);
+        	AnimeData.getAnimeData().add(singleAnime);
         }
-		 return allData;
+		
+        return allData;
 	}
 	
 	public static void updateAnimeEntry(Anime anime)

@@ -40,12 +40,12 @@ public class LandingPageUI {
 	
 	private void animeTableDisplay(JPanel panel)
 	{
-		ShowData.setShowData(ShowCRUD.getAllShows());
-		AnimeData.setAnimeData(AnimeCRUD.getAllAnimes());	
+		ShowData.setShowTableData(ShowCRUD.getAllShows());
+		AnimeData.setAnimeTableData(AnimeCRUD.getAllAnimes());	
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);
-		tbModel.setTableData(AnimeData.getAnimeData(), TableHeaders.getAnimeColumns());
+		tbModel.setTableData(AnimeData.getAnimeTableData(), TableHeaders.getAnimeColumns());
 		tbModel.setDataType(TableHeaders.TYPE_ANIME);
 		table.setEnabled(true);
 		//use custom table model and custom change listener for the edit
@@ -56,12 +56,12 @@ public class LandingPageUI {
 	
 	private void showTableDisplay(JPanel panel) 
 	{
-		ShowData.setShowData(ShowCRUD.getAllShows());
-		AnimeData.setAnimeData(AnimeCRUD.getAllAnimes());		
+		ShowData.setShowTableData(ShowCRUD.getAllShows());
+		AnimeData.setAnimeTableData(AnimeCRUD.getAllAnimes());		
 		table.removeAll();
 		table.setFillsViewportHeight(true);
 		panel.remove(scrollPane);		
-		tbModel.setTableData(ShowData.getShowData(), TableHeaders.getShowColumns());
+		tbModel.setTableData(ShowData.getShowTableData(), TableHeaders.getShowColumns());
 		tbModel.setDataType(TableHeaders.TYPE_SHOW);
 		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(true);
@@ -103,8 +103,8 @@ public class LandingPageUI {
 	public void showGui(final JFrame mainFrame)
 	{
 		tbModel.setFrame(mainFrame);
-		ShowData.setShowData(ShowCRUD.getAllShows());
-		AnimeData.setAnimeData(AnimeCRUD.getAllAnimes());
+		ShowData.setShowTableData(ShowCRUD.getAllShows());
+		AnimeData.setAnimeTableData(AnimeCRUD.getAllAnimes());
 		//list can be used instead menu later test list
 		System.out.println(UserSessionDetails.getUserNameLoggedIn());
 		mainFrame.getContentPane().removeAll();
