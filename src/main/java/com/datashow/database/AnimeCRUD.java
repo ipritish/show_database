@@ -36,14 +36,13 @@ public class AnimeCRUD
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Vector<Vector<Object>> getAllAnimes()
+	public static ArrayList<Anime> getAllAnimes()
 	{
-		Vector<Vector<Object>> allData = new Vector<Vector<Object>>();
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
         Session session = sessionFactory.openSession();  
         session.beginTransaction();
         
-        ArrayList<Anime> allShows = new ArrayList<Anime>();
+        ArrayList<Anime> allAnimes = new ArrayList<Anime>();
         
         String queryString = "";
         Query queryResult;
@@ -53,23 +52,9 @@ public class AnimeCRUD
         queryResult.setString("user", UserSessionDetails.getUserNameLoggedIn());
 
         
-        allShows = (ArrayList<Anime>) queryResult.list();
-        AnimeData.getAnimeData().clear();
-        
-        for(int i=0; i<allShows.size();i++)
-        {
-           	Anime singleAnime = (Anime) allShows.get(i);
-        	Vector<Object> rowData = new Vector<Object>();
-        	rowData.addElement(singleAnime.getAnimeName());
-        	rowData.addElement(singleAnime.getRating());
-        	rowData.addElement(singleAnime.getSeason());
-        	rowData.addElement(singleAnime.isAiring());
-        	rowData.addElement(singleAnime.getAirDay());
-        	allData.addElement(rowData);
-        	AnimeData.getAnimeData().add(singleAnime);
-        }
+        allAnimes = (ArrayList<Anime>) queryResult.list();
 		
-        return allData;
+        return allAnimes;
 	}
 	
 	public static void updateAnimeEntry(Anime anime)

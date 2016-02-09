@@ -7,17 +7,8 @@ import main.java.com.datashow.persistence.Anime;
 
 public class AnimeData {
 	
-	private static Vector<Vector<Object>> animeTableData = new Vector<Vector<Object>>();
-	
+
 	private static ArrayList<Anime> animeData = new ArrayList<Anime>();
-
-	public static Vector<Vector<Object>> getAnimeTableData() {
-		return animeTableData;
-	}
-
-	public static void setAnimeTableData(Vector<Vector<Object>> animeData) {
-		AnimeData.animeTableData = animeData;
-	}
 
 	public static ArrayList<Anime> getAnimeData() {
 		return animeData;
@@ -25,6 +16,24 @@ public class AnimeData {
 
 	public static void setAnimeData(ArrayList<Anime> animeData) {
 		AnimeData.animeData = animeData;
+	}
+	
+	public static Vector<Vector<Object>> getVectorFromListData()
+	{
+		Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
+		for (Anime singleAnime : getAnimeData())
+		{
+			Vector<Object> singleRow = new Vector<Object>();
+			singleRow.addElement(singleAnime.getAnimeName());
+			singleRow.addElement(singleAnime.getRating());
+			singleRow.addElement(singleAnime.getSeason());
+			singleRow.addElement(singleAnime.isAiring());
+			singleRow.addElement(singleAnime.getAirDay());
+			
+			tableData.addElement(singleRow);
+		}
+		
+		return tableData;
 	}
 	
 

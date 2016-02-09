@@ -86,11 +86,7 @@ public class CustomTableModel extends AbstractTableModel
 	@Override
 	public boolean isCellEditable(int row, int col)
 	{ 
-		if(col == 0)
-		{
-			JOptionPane.showMessageDialog(mainFrame,"Can't change the name","Error",JOptionPane.ERROR_MESSAGE);
-		}
-		return (col != 0);
+		return true;
 	}
 	
 	@Override
@@ -98,6 +94,7 @@ public class CustomTableModel extends AbstractTableModel
 	{
 		Vector<Object> temp = dataVector.get(rowIndex);
 		
+		//this to facilitate visual of immediate change
 		if (value instanceof Boolean)
 		{
 			dataVector.get(rowIndex).set(columnIndex, (Boolean)value);
@@ -118,32 +115,26 @@ public class CustomTableModel extends AbstractTableModel
 		//check type of data
 		if (getDataType().equals(TableHeaders.TYPE_ANIME))
 		{
-			Anime anime = new Anime();
-			//anime.setAirDay(airDay);
+			Anime anime = AnimeData.getAnimeData().get(rowIndex);
 			anime.setAnimeName((String)temp.get(0));
 			anime.setRating((Double)temp.get(1));
 			anime.setSeason((Integer)temp.get(2));
 			anime.setAiring((Boolean)temp.get(3));
 			anime.setAirDay((String)temp.get(4));
-			Anime getFromDB = AnimeCRUD.getSingleEntryFromName(anime.getAnimeName());
-			anime.setId(getFromDB.getId());
-			anime.setAssociatedUser(UserSessionDetails.getUserNameLoggedIn());
 			AnimeCRUD.updateAnimeEntry(anime);
+			//AnimeData.setAnimeData(AnimeCRUD.getAllAnimes());
 				
 		}
 		if (getDataType().equals(TableHeaders.TYPE_SHOW))
 		{
-			Show show = new Show();
-			//anime.setAirDay(airDay);
+			Show show = ShowData.getShowData().get(rowIndex);
 			show.setShowName((String)temp.get(0));
 			show.setRating((Double)temp.get(1));
 			show.setSeason((Integer)temp.get(2));
 			show.setAiring((Boolean)temp.get(3));
 			show.setAirDay((String)temp.get(4));
-			Show getFromDB = ShowCRUD.getSingleEntryFromName(show.getShowName());
-			show.setId(getFromDB.getId());
-			show.setAssociatedUser(UserSessionDetails.getUserNameLoggedIn());
 			ShowCRUD.updateShowEntry(show);
+			//ShowData.setShowData(ShowCRUD.getAllShows());
 		}
 		
 		fireTableDataChanged();

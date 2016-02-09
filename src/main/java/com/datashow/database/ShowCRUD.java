@@ -36,9 +36,8 @@ public class ShowCRUD
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Vector<Vector<Object>> getAllShows()
+	public static ArrayList<Show> getAllShows()
 	{
-		Vector<Vector<Object>> allData = new Vector<Vector<Object>>();
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();  
         Session session = sessionFactory.openSession();  
         session.beginTransaction();
@@ -54,21 +53,7 @@ public class ShowCRUD
           
         
         allShows = (ArrayList<Show>) queryResult.list();
-        ShowData.getShowData().clear();
-        
-        for(int i=0; i<allShows.size();i++)
-        {
-        	Show singleShow = (Show) allShows.get(i);
-        	Vector<Object> rowData = new Vector<Object>();
-        	rowData.addElement(singleShow.getShowName());
-        	rowData.addElement(singleShow.getRating());
-        	rowData.addElement(singleShow.getSeason());
-        	rowData.addElement(singleShow.isAiring());
-        	rowData.addElement(singleShow.getAirDay());
-        	allData.addElement(rowData);
-        	ShowData.getShowData().add(singleShow);
-        }
-		 return allData;
+        return allShows;
 	}
 	
 	public static void updateShowEntry(Show show)
