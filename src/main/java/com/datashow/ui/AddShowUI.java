@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 
 import main.java.com.datashow.database.ShowCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
-import main.java.com.datashow.datamodel.AnimeData;
-import main.java.com.datashow.datamodel.ShowData;
 
 public class AddShowUI {
 	

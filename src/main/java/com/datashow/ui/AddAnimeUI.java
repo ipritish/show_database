@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.java.com.datashow.database.AnimeCRUD;
-import main.java.com.datashow.database.ShowCRUD;
 import main.java.com.datashow.database.UserSessionDetails;
 
 public class AddAnimeUI {

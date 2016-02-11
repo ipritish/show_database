@@ -1,8 +1,12 @@
 package main.java.com.datashow.datamodel;
 
-import java.awt.event.*;
-import javax.swing.*;
-import java.beans.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.Action;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 /*
  *  This class listens for changes made to the data in the table via the
